@@ -18,25 +18,25 @@ export function ContactFloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+    <div className="fixed bottom-20 right-4 md:bottom-24 md:right-6 z-40 flex flex-row md:flex-col gap-3">
       <Button
         onClick={handleTelegramClick}
         size="lg"
-        className="h-14 w-14 rounded-full shadow-2xl bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 hover:scale-110 group"
+        className="h-12 w-12 md:h-14 md:w-14 rounded-full shadow-2xl bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 hover:scale-110 group"
         data-testid="floating-telegram-button"
         title="Message on Telegram"
       >
-        <Send className="h-6 w-6 text-white group-hover:rotate-12 transition-transform" />
+        <Send className="h-5 w-5 md:h-6 md:w-6 text-white group-hover:rotate-12 transition-transform" />
       </Button>
       
       <Button
         onClick={handleDiscordClick}
         size="lg"
-        className="h-14 w-14 rounded-full shadow-2xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800 transition-all duration-300 hover:scale-110 group"
+        className="h-12 w-12 md:h-14 md:w-14 rounded-full shadow-2xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800 transition-all duration-300 hover:scale-110 group"
         data-testid="floating-discord-button"
         title="Join Discord Community"
       >
-        <SiDiscord className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
+        <SiDiscord className="h-5 w-5 md:h-6 md:w-6 text-white group-hover:scale-110 transition-transform" />
       </Button>
     </div>
   );
