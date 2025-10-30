@@ -321,7 +321,7 @@ export function LiveTradingFeed() {
         <div>
           <p className="text-sm text-muted-foreground">{currentUpdate.trader} just closed</p>
           <p className="text-xl font-bold">
-            <span className="text-primary">{currentUpdate.ticker}</span> Trade
+            <span className="text-primary">{currentUpdate.ticker}</span> Position
           </p>
         </div>
         <div className="text-right">
