@@ -93,8 +93,7 @@ export default function Home() {
     queryKey: ["/api/testimonials"],
   });
 
-  const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleContactClick = () => {
     setShowTelegramModal(true);
   };
 
@@ -268,7 +267,7 @@ export default function Home() {
       </section>
 
       {/* Contact CTA */}
-      <ContactCTA />
+      <ContactCTA onContactClick={handleContactClick} />
 
       {/* Telegram Contact Modal */}
       <TelegramContactModal

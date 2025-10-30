@@ -42,17 +42,13 @@ export function ContactFloatingButtons() {
   );
 }
 
-export function ContactCTA() {
+export function ContactCTA({ onContactClick }: { onContactClick?: () => void }) {
   const [location] = useLocation();
 
-  const handleTelegramClick = () => {
-    trackTelegramClick(location);
-    window.open("https://t.me/thewealthprince0", "_blank");
-  };
-
-  const handleDiscordClick = () => {
-    trackDiscordClick(location);
-    window.open("https://discord.gg/zruqE5wB", "_blank");
+  const handleClick = () => {
+    if (onContactClick) {
+      onContactClick();
+    }
   };
 
   return (
@@ -69,7 +65,7 @@ export function ContactCTA() {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
           <Button
-            onClick={handleTelegramClick}
+            onClick={handleClick}
             size="lg"
             className="w-full sm:w-auto bg-white text-blue-600 hover:bg-blue-50 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50 font-bold px-10 py-7 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
             data-testid="cta-telegram-button"
@@ -79,13 +75,13 @@ export function ContactCTA() {
           </Button>
           
           <Button
-            onClick={handleDiscordClick}
+            onClick={handleClick}
             size="lg"
             variant="outline"
             className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white/10 dark:border-white dark:text-white dark:hover:bg-white/10 font-bold px-10 py-7 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
             data-testid="cta-discord-button"
           >
-            <SiDiscord className="mr-2 h-6 w-6" />
+            <MessageCircle className="mr-2 h-6 w-6" />
             Join Our Community
           </Button>
         </div>
