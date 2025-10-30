@@ -73,6 +73,7 @@ export const stats = pgTable("stats", {
   id: serial("id").primaryKey(),
   memberCount: integer("member_count").notNull(),
   tradesCalled: integer("trades_called").notNull(),
+  totalProfit: real("total_profit").notNull().default(0),
   avgProfit: integer("avg_profit").notNull(),
   winRate: integer("win_rate").notNull(),
   successRate: integer("success_rate").notNull(),

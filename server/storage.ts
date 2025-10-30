@@ -227,7 +227,8 @@ export class DatabaseStorage implements IStorage {
       const [newStats] = await db.insert(stats).values({
         memberCount: 1547,
         tradesCalled: 2489,
-        avgProfit: 789,
+        totalProfit: 1490508.51,
+        avgProfit: 8734,
         winRate: 76,
         successRate: 89,
       }).returning();

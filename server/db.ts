@@ -38,6 +38,7 @@ export async function seedDatabase() {
     await db.insert(schema.stats).values({
       memberCount: 1547,
       tradesCalled: 2489,
+      totalProfit: 1490508.51,
       avgProfit: 8734,
       winRate: 76,
       successRate: 89,
