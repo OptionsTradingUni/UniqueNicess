@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Switch, Route } from "wouter";
+import { useState, useEffect, useRef } from "react";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -15,6 +15,8 @@ import { FloatingJoinButton } from "@/components/floating-join-button";
 import { LiveNotifications } from "@/components/live-notifications";
 import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { TelegramContactModal } from "@/components/telegram-contact-modal";
+import { ContactFloatingButtons } from "@/components/ContactFloatingButtons";
+import { trackPageView, getSessionId, trackEvent } from "@/lib/analytics";
 
 import Home from "@/pages/home";
 import Testimonials from "@/pages/testimonials";
@@ -50,6 +52,42 @@ function Router() {
   );
 }
 
+function PageTracker() {
+  const [location] = useLocation();
+  const sessionStartRef = useRef<number>(Date.now());
+  const isFirstVisit = useRef(true);
+
+  useEffect(() => {
+    if (isFirstVisit.current) {
+      trackEvent({
+        eventType: 'session_start',
+        sessionId: getSessionId(),
+        page: location,
+      });
+      isFirstVisit.current = false;
+    } else {
+      trackPageView(location);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      const duration = Math.floor((Date.now() - sessionStartRef.current) / 1000);
+      trackEvent({
+        eventType: 'session_end',
+        sessionId: getSessionId(),
+        page: location,
+        duration,
+      });
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [location]);
+
+  return null;
+}
+
 function App() {
   const [showTelegramModal, setShowTelegramModal] = useState(false);
   
@@ -69,6 +107,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
+          <PageTracker />
           <SidebarProvider style={style as React.CSSProperties}>
             <div className="flex h-screen w-full">
               <AppSidebar />
@@ -98,6 +137,7 @@ function App() {
             <TikTokDetector />
             <JoinPopup delay={30000} trigger="time" />
             <FloatingJoinButton />
+            <ContactFloatingButtons />
             <LiveNotifications />
             <ExitIntentPopup />
             <TelegramContactModal

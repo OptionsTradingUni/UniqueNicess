@@ -8,6 +8,7 @@ import { ArrowRight, TrendingUp, Users, Award, Target, CheckCircle2 } from "luci
 import { TestimonialsSlideshow } from "@/components/testimonials-slideshow";
 import { LiveTradingFeed } from "@/components/live-trading-feed";
 import { TelegramContactModal } from "@/components/telegram-contact-modal";
+import { ContactCTA } from "@/components/ContactFloatingButtons";
 import type { Stats, Testimonial } from "@shared/schema";
 
 function useCountUp(end: number, duration: number = 2000) {
@@ -266,7 +267,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Contact CTA */}
+      <ContactCTA />
+
+      {/* Secondary CTA Section */}
       <section className="py-20 px-6 bg-gradient-to-br from-primary/20 to-secondary/20">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <h2 className="text-4xl font-black">Ready to Transform Your Trading?</h2>
