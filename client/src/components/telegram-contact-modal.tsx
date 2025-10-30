@@ -79,14 +79,24 @@ export function TelegramContactModal({ open, onOpenChange, telegramUsername, tel
 
             <div className="border-t pt-4 space-y-2">
               <h3 className="font-bold text-lg">💬 Join Our Discord Community</h3>
-              <Button
-                className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-90 text-lg py-6"
-                onClick={copyDiscordLink}
-                data-testid="button-copy-discord-link"
-              >
-                <Copy className="mr-2 w-4 h-4" />
-                Copy Discord Link
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  className="flex-1 bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-90 text-lg py-6"
+                  asChild
+                  data-testid="button-open-discord"
+                >
+                  <a href={discordLink} target="_blank" rel="noopener noreferrer">
+                    Open Discord
+                  </a>
+                </Button>
+                <Button
+                  className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-90 py-6 px-4"
+                  onClick={copyDiscordLink}
+                  data-testid="button-copy-discord-link"
+                >
+                  <Copy className="w-5 h-5" />
+                </Button>
+              </div>
               <p className="text-xs text-muted-foreground text-center">
                 Connect with 1,500+ successful traders
               </p>

@@ -18,7 +18,7 @@ export function ContactFloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-6 right-4 md:right-6 z-40 flex flex-row md:flex-col gap-3">
+    <div className="fixed bottom-32 md:bottom-36 right-4 md:right-6 z-40 flex flex-row md:flex-col gap-3">
       <Button
         onClick={handleTelegramClick}
         size="lg"
