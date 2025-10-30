@@ -45,54 +45,104 @@ export function ContactFloatingButtons() {
 export function ContactCTA({ onContactClick }: { onContactClick?: () => void }) {
   const [location] = useLocation();
 
-  const handleClick = () => {
+  const handleTelegramClick = () => {
+    trackTelegramClick(location);
     if (onContactClick) {
       onContactClick();
     }
   };
 
+  const handleDiscordClick = () => {
+    trackDiscordClick(location);
+    window.open("https://discord.gg/zruqE5wB", "_blank");
+  };
+
   return (
-    <div className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-700 dark:via-purple-700 dark:to-pink-700 py-16 px-4 mb-24">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
-            Start Making Profitable Trades Today
-          </h2>
-          <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto font-medium">
-            Join 1,500+ traders who are learning from experienced mentors and executing winning strategies every single day.
-          </p>
-        </div>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-          <Button
-            onClick={handleClick}
-            size="lg"
-            className="w-full sm:w-auto bg-white text-blue-600 hover:bg-blue-50 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50 font-bold px-10 py-7 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
-            data-testid="cta-telegram-button"
-          >
-            <Send className="mr-2 h-6 w-6" />
-            Message a Mentor Now
-          </Button>
-          
-          <Button
-            onClick={handleClick}
-            size="lg"
-            variant="outline"
-            className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white/10 dark:border-white dark:text-white dark:hover:bg-white/10 font-bold px-10 py-7 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
-            data-testid="cta-discord-button"
-          >
-            <MessageCircle className="mr-2 h-6 w-6" />
-            Join Our Community
-          </Button>
-        </div>
-        
-        <div className="pt-4 space-y-2">
-          <p className="text-white/90 text-lg font-semibold">
-            ✅ Instant access to mentors  •  ✅ Real-time trade alerts  •  ✅ Proven strategies
-          </p>
-          <p className="text-white/80 text-base">
-            Don't wait - our next winning trade could be moments away!
-          </p>
+    <div className="relative w-full overflow-hidden mb-24">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary animate-gradient-shift bg-[length:400%_400%]" />
+      
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+      
+      <div className="relative py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center space-y-6 mb-10">
+            <div className="inline-flex items-center gap-2 bg-white/20 dark:bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full border border-white/30 animate-pulse">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-ping" />
+              <span className="text-white font-bold text-sm">🔥 1,500+ Active Traders Online Now</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight drop-shadow-2xl">
+              Ready to Join the Winners?
+            </h2>
+            
+            <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto font-semibold leading-relaxed">
+              Get instant access to expert trade alerts, live mentorship, and a community of profitable traders.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto mb-8">
+            <Button
+              onClick={handleTelegramClick}
+              size="lg"
+              className="group relative overflow-hidden bg-white hover:bg-white text-primary font-black px-8 py-8 text-xl shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.5)]"
+              data-testid="cta-telegram-button"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex items-center justify-center gap-3">
+                <Send className="h-7 w-7" />
+                <div className="text-left">
+                  <div className="text-xl font-black">Message a Mentor</div>
+                  <div className="text-xs font-semibold opacity-80">Get Started on Telegram</div>
+                </div>
+              </div>
+            </Button>
+            
+            <Button
+              onClick={handleDiscordClick}
+              size="lg"
+              className="group relative overflow-hidden bg-[#5865F2] hover:bg-[#4752C4] text-white font-black px-8 py-8 text-xl shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(88,101,242,0.5)]"
+              data-testid="cta-discord-button"
+            >
+              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex items-center justify-center gap-3">
+                <SiDiscord className="h-7 w-7" />
+                <div className="text-left">
+                  <div className="text-xl font-black">Join Discord</div>
+                  <div className="text-xs font-semibold opacity-90">Community & Trade Alerts</div>
+                </div>
+              </div>
+            </Button>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 text-center">
+              <div className="text-3xl font-black text-white mb-1">76%</div>
+              <div className="text-sm text-white/90 font-semibold">Win Rate</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 text-center">
+              <div className="text-3xl font-black text-white mb-1">$789</div>
+              <div className="text-sm text-white/90 font-semibold">Avg Profit/Win</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 text-center">
+              <div className="text-3xl font-black text-white mb-1">11+</div>
+              <div className="text-sm text-white/90 font-semibold">Years Experience</div>
+            </div>
+          </div>
+
+          <div className="text-center space-y-3">
+            <div className="flex flex-wrap justify-center gap-3 text-white/95 text-sm md:text-base font-bold">
+              <span className="flex items-center gap-1">✅ Instant Access</span>
+              <span className="hidden md:inline text-white/50">•</span>
+              <span className="flex items-center gap-1">✅ Real-Time Alerts</span>
+              <span className="hidden md:inline text-white/50">•</span>
+              <span className="flex items-center gap-1">✅ Expert Mentors</span>
+              <span className="hidden md:inline text-white/50">•</span>
+              <span className="flex items-center gap-1">✅ Proven Strategies</span>
+            </div>
+            <p className="text-white/90 text-lg font-black animate-pulse">
+              ⚡ Our next winning trade could be minutes away!
+            </p>
+          </div>
         </div>
       </div>
     </div>
