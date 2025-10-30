@@ -5,6 +5,7 @@ import path from "path";
 import { storage } from "./storage";
 import { comparePassword, requireAdmin } from "./auth";
 import { getBotStats, getRecentTrades } from "./bot-data-service";
+import { trackAndNotify, type AnalyticsEvent } from "./telegram-service";
 import {
   insertTestimonialSchema,
   insertVideoLessonSchema,
@@ -13,6 +14,7 @@ import {
   insertGlossaryTermSchema,
   insertStatsSchema,
   insertStockSchema,
+  insertAnalyticsEventSchema,
 } from "@shared/schema";
 
 // Configure multer for file uploads
@@ -354,6 +356,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Analytics error:", error);
       res.status(500).json({ error: "Failed to fetch analytics" });
+    }
+  });
+
+  app.post("/api/track-event", async (req, res) => {
+    try {
+      const eventData = insertAnalyticsEventSchema.parse(req.body);
+      
+      await storage.createAnalyticsEvent(eventData);
+      
+      const analyticsEvent: AnalyticsEvent = {
+        type: eventData.eventType as any,
+        page: eventData.page || undefined,
+        buttonName: eventData.buttonName || undefined,
+        formName: eventData.formName || undefined,
+        details: eventData.details || undefined,
+        duration: eventData.duration || undefined,
+        userAgent: req.headers['user-agent'],
+        referrer: req.headers.referer,
+      };
+      
+      trackAndNotify(analyticsEvent).catch(err => {
+        console.error("Failed to send Telegram notification:", err);
+      });
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Track event error:", error);
+      res.status(400).json({ error: "Failed to track event" });
     }
   });
 

@@ -10,6 +10,7 @@ import {
   stocks,
   visitors,
   adminUsers,
+  analyticsEvents,
   type Testimonial,
   type VideoLesson,
   type BlogPost,
@@ -19,6 +20,7 @@ import {
   type Stock,
   type Visitor,
   type AdminUser,
+  type AnalyticsEvent,
   type InsertTestimonial,
   type InsertVideoLesson,
   type InsertBlogPost,
@@ -28,6 +30,7 @@ import {
   type InsertStock,
   type InsertVisitor,
   type InsertAdminUser,
+  type InsertAnalyticsEvent,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -87,6 +90,11 @@ export interface IStorage {
     avgDuration: number;
     conversionRate: number;
   }>;
+
+  // Analytics Events
+  createAnalyticsEvent(data: InsertAnalyticsEvent): Promise<AnalyticsEvent>;
+  getAnalyticsEvents(limit?: number): Promise<AnalyticsEvent[]>;
+  getEventsByType(eventType: string, limit?: number): Promise<AnalyticsEvent[]>;
 
   // Admin Users
   getAdminByUsername(username: string): Promise<AdminUser | undefined>;
@@ -299,6 +307,20 @@ export class DatabaseStorage implements IStorage {
       avgDuration,
       conversionRate,
     };
+  }
+
+  // ========== ANALYTICS EVENTS ==========
+  async createAnalyticsEvent(data: InsertAnalyticsEvent): Promise<AnalyticsEvent> {
+    const [result] = await db.insert(analyticsEvents).values(data).returning();
+    return result;
+  }
+
+  async getAnalyticsEvents(limit: number = 100): Promise<AnalyticsEvent[]> {
+    return await db.select().from(analyticsEvents).orderBy(analyticsEvents.createdAt).limit(limit);
+  }
+
+  async getEventsByType(eventType: string, limit: number = 50): Promise<AnalyticsEvent[]> {
+    return await db.select().from(analyticsEvents).where(eq(analyticsEvents.eventType, eventType)).orderBy(analyticsEvents.createdAt).limit(limit);
   }
 
   // ========== ADMIN USERS ==========

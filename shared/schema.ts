@@ -103,9 +103,22 @@ export const visitors = pgTable("visitors", {
   isTikTok: boolean("is_tiktok").default(false).notNull(),
   firstVisit: timestamp("first_visit").defaultNow().notNull(),
   lastActivity: timestamp("last_activity").defaultNow().notNull(),
-  totalDuration: integer("total_duration").default(0).notNull(), // in seconds
+  totalDuration: integer("total_duration").default(0).notNull(),
   pageViews: integer("page_views").default(1).notNull(),
   convertedToTelegram: boolean("converted_to_telegram").default(false).notNull(),
+});
+
+// Analytics events table
+export const analyticsEvents = pgTable("analytics_events", {
+  id: serial("id").primaryKey(),
+  sessionId: varchar("session_id", { length: 255 }).notNull(),
+  eventType: varchar("event_type", { length: 50 }).notNull(),
+  page: varchar("page", { length: 500 }),
+  buttonName: varchar("button_name", { length: 255 }),
+  formName: varchar("form_name", { length: 255 }),
+  details: text("details"),
+  duration: integer("duration"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 // ========== INSERT SCHEMAS ==========
@@ -119,6 +132,7 @@ export const insertGlossaryTermSchema = createInsertSchema(glossaryTerms).omit({
 export const insertStatsSchema = createInsertSchema(stats).omit({ id: true, updatedAt: true });
 export const insertStockSchema = createInsertSchema(stocks).omit({ id: true, updatedAt: true });
 export const insertVisitorSchema = createInsertSchema(visitors).omit({ id: true, firstVisit: true, lastActivity: true });
+export const insertAnalyticsEventSchema = createInsertSchema(analyticsEvents).omit({ id: true, createdAt: true });
 
 // ========== TYPES ==========
 
@@ -148,3 +162,6 @@ export type InsertStock = z.infer<typeof insertStockSchema>;
 
 export type Visitor = typeof visitors.$inferSelect;
 export type InsertVisitor = z.infer<typeof insertVisitorSchema>;
+
+export type AnalyticsEvent = typeof analyticsEvents.$inferSelect;
+export type InsertAnalyticsEvent = z.infer<typeof insertAnalyticsEventSchema>;
