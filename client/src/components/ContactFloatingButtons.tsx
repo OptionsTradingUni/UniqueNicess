@@ -120,7 +120,7 @@ export function ContactCTA({ onContactClick }: { onContactClick?: () => void }) 
               <div className="text-sm text-white/90 font-semibold">Win Rate</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 text-center">
-              <div className="text-3xl font-black text-white mb-1">$789</div>
+              <div className="text-3xl font-black text-white mb-1">$8,734</div>
               <div className="text-sm text-white/90 font-semibold">Avg Profit/Win</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 text-center">
