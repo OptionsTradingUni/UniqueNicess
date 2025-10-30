@@ -64,6 +64,7 @@ function PageTracker() {
         sessionId: getSessionId(),
         page: location,
       });
+      trackPageView(location);
       isFirstVisit.current = false;
     } else {
       trackPageView(location);

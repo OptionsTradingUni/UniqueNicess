@@ -1,5 +1,9 @@
-const TELEGRAM_BOT_TOKEN = "8424414707:AAE8l6_6krko6LapUOAU5U8LhSzjP_TRT20";
-const TELEGRAM_USER_ID = "8083574070";
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_USER_ID = process.env.TELEGRAM_USER_ID;
+
+if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_USER_ID) {
+  console.warn('Telegram credentials not configured. Analytics notifications will be disabled.');
+}
 
 export interface AnalyticsEvent {
   type: 'page_view' | 'button_click' | 'form_submit' | 'telegram_click' | 'discord_click' | 'video_watch' | 'session_start' | 'session_end';
@@ -13,6 +17,11 @@ export interface AnalyticsEvent {
 }
 
 export async function sendTelegramNotification(message: string): Promise<boolean> {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_USER_ID) {
+    console.log('Telegram credentials not configured, skipping notification');
+    return false;
+  }
+
   try {
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     

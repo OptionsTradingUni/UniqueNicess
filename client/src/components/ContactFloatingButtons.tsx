@@ -9,7 +9,7 @@ export function ContactFloatingButtons() {
 
   const handleTelegramClick = () => {
     trackTelegramClick(location);
-    window.open("https://t.me/thewealth0", "_blank");
+    window.open("https://t.me/thewealthprince0", "_blank");
   };
 
   const handleDiscordClick = () => {
@@ -47,7 +47,7 @@ export function ContactCTA() {
 
   const handleTelegramClick = () => {
     trackTelegramClick(location);
-    window.open("https://t.me/thewealth0", "_blank");
+    window.open("https://t.me/thewealthprince0", "_blank");
   };
 
   const handleDiscordClick = () => {
@@ -101,7 +101,7 @@ export function InlineContactButtons({ variant = "default" }: { variant?: "defau
 
   const handleTelegramClick = () => {
     trackTelegramClick(location);
-    window.open("https://t.me/thewealth0", "_blank");
+    window.open("https://t.me/thewealthprince0", "_blank");
   };
 
   const handleDiscordClick = () => {
