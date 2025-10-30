@@ -33,12 +33,21 @@ export function TikTokDetector() {
   };
 
   const telegramLink = "https://t.me/thewealthprince0";
+  const discordLink = "https://discord.gg/zruqE5wB";
 
   const copyTelegramLink = () => {
     navigator.clipboard.writeText(telegramLink);
     toast({
       title: "Telegram Link Copied!",
-      description: "Open Telegram and paste this link",
+      description: "Open Telegram and paste this link to message a mentor",
+    });
+  };
+
+  const copyDiscordLink = () => {
+    navigator.clipboard.writeText(discordLink);
+    toast({
+      title: "Discord Link Copied!",
+      description: "Open Discord and paste this link to join our community",
     });
   };
 
@@ -46,9 +55,9 @@ export function TikTokDetector() {
     <Dialog open={showTikTokModal} onOpenChange={setShowTikTokModal}>
       <DialogContent className="sm:max-w-md" data-testid="dialog-tiktok">
         <DialogHeader>
-          <DialogTitle>Open in Your Browser</DialogTitle>
+          <DialogTitle>Connect With Us!</DialogTitle>
           <DialogDescription>
-            For the best experience and to join our Telegram community, please open this site in your browser
+            Join our trading community - choose your preferred platform below
           </DialogDescription>
         </DialogHeader>
 
@@ -72,9 +81,9 @@ export function TikTokDetector() {
 
           <Card className="bg-primary/10">
             <CardContent className="pt-6 space-y-3">
-              <p className="text-sm font-medium">Option 2: Join Telegram Directly</p>
+              <p className="text-sm font-medium">Option 2: Message a Mentor on Telegram</p>
               <Button
-                className="w-full bg-gradient-to-r from-primary to-secondary"
+                className="w-full bg-gradient-to-r from-blue-500 to-blue-600"
                 onClick={copyTelegramLink}
                 data-testid="button-copy-telegram"
               >
@@ -82,7 +91,24 @@ export function TikTokDetector() {
                 Copy Telegram Link
               </Button>
               <p className="text-xs text-muted-foreground">
-                Open Telegram app and paste the link to message our mentor
+                Get instant 1-on-1 support from our trading mentors
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-secondary/10">
+            <CardContent className="pt-6 space-y-3">
+              <p className="text-sm font-medium">Option 3: Join Discord Community</p>
+              <Button
+                className="w-full bg-gradient-to-r from-indigo-500 to-purple-600"
+                onClick={copyDiscordLink}
+                data-testid="button-copy-discord"
+              >
+                <Copy className="mr-2 w-4 h-4" />
+                Copy Discord Link
+              </Button>
+              <p className="text-xs text-muted-foreground">
+                Connect with 1,500+ traders and share strategies
               </p>
             </CardContent>
           </Card>

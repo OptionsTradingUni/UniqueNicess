@@ -270,25 +270,6 @@ export default function Home() {
       {/* Contact CTA */}
       <ContactCTA />
 
-      {/* Secondary CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-primary/20 to-secondary/20">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-4xl font-black">Ready to Transform Your Trading?</h2>
-          <p className="text-xl text-muted-foreground">
-            Join our community of successful traders and start your journey today.
-          </p>
-          <Button 
-            size="lg" 
-            className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
-            data-testid="button-join-community"
-            onClick={handleContactClick}
-          >
-            Message a Mentor on Telegram
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
-      </section>
-
       {/* Telegram Contact Modal */}
       <TelegramContactModal
         open={showTelegramModal}

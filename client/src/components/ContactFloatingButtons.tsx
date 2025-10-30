@@ -18,7 +18,7 @@ export function ContactFloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-20 right-4 md:bottom-24 md:right-6 z-40 flex flex-row md:flex-col gap-3">
+    <div className="fixed bottom-6 right-4 md:right-6 z-40 flex flex-row md:flex-col gap-3">
       <Button
         onClick={handleTelegramClick}
         size="lg"
@@ -56,41 +56,48 @@ export function ContactCTA() {
   };
 
   return (
-    <div className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-700 dark:via-purple-700 dark:to-pink-700 py-12 px-4">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Ready to Start Your Trading Journey?
-        </h2>
-        <p className="text-xl text-white/90 mb-8">
-          Join our community of successful traders. Get personalized mentorship, proven strategies, and real-time trade alerts!
-        </p>
+    <div className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-700 dark:via-purple-700 dark:to-pink-700 py-16 px-4 mb-24">
+      <div className="max-w-4xl mx-auto text-center space-y-8">
+        <div className="space-y-4">
+          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+            Start Making Profitable Trades Today
+          </h2>
+          <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto font-medium">
+            Join 1,500+ traders who are learning from experienced mentors and executing winning strategies every single day.
+          </p>
+        </div>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
           <Button
             onClick={handleTelegramClick}
             size="lg"
-            className="w-full sm:w-auto bg-white text-blue-600 hover:bg-blue-50 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50 font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="w-full sm:w-auto bg-white text-blue-600 hover:bg-blue-50 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50 font-bold px-10 py-7 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
             data-testid="cta-telegram-button"
           >
-            <Send className="mr-2 h-5 w-5" />
-            Message Me on Telegram
+            <Send className="mr-2 h-6 w-6" />
+            Message a Mentor Now
           </Button>
           
           <Button
             onClick={handleDiscordClick}
             size="lg"
             variant="outline"
-            className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white/10 dark:border-white dark:text-white dark:hover:bg-white/10 font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white/10 dark:border-white dark:text-white dark:hover:bg-white/10 font-bold px-10 py-7 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
             data-testid="cta-discord-button"
           >
-            <SiDiscord className="mr-2 h-5 w-5" />
-            Join Discord Community
+            <SiDiscord className="mr-2 h-6 w-6" />
+            Join Our Community
           </Button>
         </div>
         
-        <p className="mt-6 text-white/80 text-sm">
-          💬 Get instant responses • 📱 Mobile-friendly • 🔥 Active community 24/7
-        </p>
+        <div className="pt-4 space-y-2">
+          <p className="text-white/90 text-lg font-semibold">
+            ✅ Instant access to mentors  •  ✅ Real-time trade alerts  •  ✅ Proven strategies
+          </p>
+          <p className="text-white/80 text-base">
+            Don't wait - our next winning trade could be moments away!
+          </p>
+        </div>
       </div>
     </div>
   );
