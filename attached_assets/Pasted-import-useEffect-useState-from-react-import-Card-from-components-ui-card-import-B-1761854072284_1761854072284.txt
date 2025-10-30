@@ -11,14 +11,6 @@ interface Notification {
   icon: typeof TrendingUp;
 }
 
-interface BotTrade {
-  traderName: string;
-  symbol: string;
-  profit: number;
-  timestamp: Date;
-  strategy: string;
-}
-
 // --- START: Notification Generator ---
 
 // Helper function to pick a random item from an array
@@ -46,9 +38,9 @@ const stocks = [
   "NFLX", "COIN", "MARA", "SMCI", "PLTR", "SOFI", "RIVN", "BA", "DIS", "PYPL"
 ];
 
-// Generates a random "join" or "trade" notification (NOT profit - those come from bot)
+// Generates a single random notification object
 const createRandomNotification = (): Omit<Notification, "id"> => {
-  const type = randItem(["trade", "join"]);
+  const type = randItem(["trade", "join", "profit"]);
 
   if (type === "join") {
     const name = `${randItem(firstNames)} ${randItem(lastInitials)}.`;
@@ -58,6 +50,18 @@ const createRandomNotification = (): Omit<Notification, "id"> => {
       type: "join",
       message: `${name} from ${location} ${action}`,
       icon: Users,
+    };
+  }
+
+  if (type === "profit") {
+    const name = randItem(firstNames);
+    const profit = randInt(400, 3500);
+    const stock = randItem(stocks);
+    const action = randItem(["banked", "closed", "secured", "made", "locked in"]);
+    return {
+      type: "profit",
+      message: `${name} ${action} +$${profit.toLocaleString()} on ${stock}`,
+      icon: DollarSign,
     };
   }
 
@@ -77,24 +81,13 @@ const createRandomNotification = (): Omit<Notification, "id"> => {
   return {
     type: "trade",
     message: `${stock} ${randItem(tradeActions)}`,
-    icon: randItem([TrendingUp, Bell]),
+    icon: randItem([TrendingUp, Bell]), // Randomize trade icon
   };
 };
 
-// Create profit notification from real bot trade data
-const createProfitNotification = (trade: BotTrade): Omit<Notification, "id"> => {
-  const firstName = trade.traderName.split(' ')[0];
-  const action = randItem(["banked", "closed", "secured", "made", "locked in"]);
-  return {
-    type: "profit",
-    message: `${firstName} ${action} +$${trade.profit.toLocaleString()} on ${trade.symbol}`,
-    icon: DollarSign,
-  };
-};
-
-// Create an array of random "join" and "trade" notifications
+// Create an array of 200 random notifications
 const sampleNotifications: Omit<Notification, "id">[] = Array.from(
-  { length: 100 },
+  { length: 200 },
   createRandomNotification
 );
 
@@ -104,14 +97,6 @@ export function LiveNotifications() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [visible, setVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
-  const [botTrades, setBotTrades] = useState<BotTrade[]>([]);
-
-  useEffect(() => {
-    fetch('/api/live-feed')
-      .then(res => res.json())
-      .then(data => setBotTrades(data))
-      .catch(err => console.error('Error fetching bot trades:', err));
-  }, []);
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem("notifications-dismissed");
@@ -126,17 +111,7 @@ export function LiveNotifications() {
     const showRandomNotification = () => {
       if (isDismissed) return;
 
-      let randomNotif: Omit<Notification, "id">;
-      
-      const shouldShowProfit = Math.random() < 0.4 && botTrades.length > 0;
-      
-      if (shouldShowProfit) {
-        const randomTrade = botTrades[Math.floor(Math.random() * botTrades.length)];
-        randomNotif = createProfitNotification(randomTrade);
-      } else {
-        randomNotif = sampleNotifications[Math.floor(Math.random() * sampleNotifications.length)];
-      }
-
+      const randomNotif = sampleNotifications[Math.floor(Math.random() * sampleNotifications.length)];
       const newNotification: Notification = {
         id: Date.now().toString(),
         ...randomNotif,
@@ -151,15 +126,16 @@ export function LiveNotifications() {
       }, 5000);
     };
 
+    // Note: User's original interval was 15000ms. Kept as is.
     const interval = setInterval(showRandomNotification, 15000);
-    showRandomNotification();
+    showRandomNotification(); // Show one immediately on load
 
     return () => {
       clearInterval(interval);
       if (visibilityTimeout) clearTimeout(visibilityTimeout);
       if (hideTimeout) clearTimeout(hideTimeout);
     };
-  }, [isDismissed, botTrades]);
+  }, [isDismissed]);
 
   const handleDismiss = () => {
     setIsDismissed(true);
@@ -214,6 +190,4 @@ export function LiveNotifications() {
         );
       })}
     </div>
-  );
-}
-
+  )
