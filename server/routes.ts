@@ -4,6 +4,7 @@ import multer from "multer";
 import path from "path";
 import { storage } from "./storage";
 import { comparePassword, requireAdmin } from "./auth";
+import { getBotStats, getRecentTrades } from "./bot-data-service";
 import {
   insertTestimonialSchema,
   insertVideoLessonSchema,
@@ -42,14 +43,35 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Stats endpoint
+  // Stats endpoint - pulls real data from bot database
   app.get("/api/stats", async (_req, res) => {
     try {
-      const stats = await storage.getStats();
-      res.json(stats);
+      const botStats = await getBotStats();
+      res.json({
+        id: 1,
+        memberCount: botStats.memberCount,
+        tradesCalled: botStats.totalTrades,
+        totalProfit: botStats.totalProfit,
+        avgProfit: botStats.avgProfit,
+        winRate: botStats.winRate,
+        successRate: 89,
+        updatedAt: new Date()
+      });
     } catch (error) {
-      console.error("Error fetching stats:", error);
-      res.status(500).json({ error: "Failed to fetch stats" });
+      console.error("Error fetching stats from bot:", error);
+      const fallbackStats = await storage.getStats();
+      res.json(fallbackStats);
+    }
+  });
+
+  // Live trading feed endpoint - pulls real trades from bot
+  app.get("/api/live-feed", async (_req, res) => {
+    try {
+      const trades = await getRecentTrades(20);
+      res.json(trades);
+    } catch (error) {
+      console.error("Error fetching live feed:", error);
+      res.json([]);
     }
   });
 

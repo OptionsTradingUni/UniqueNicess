@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp } from "lucide-react";
@@ -9,6 +10,38 @@ interface TradingUpdate {
   ticker: string;
   profit: string;
   time: string;
+}
+
+interface BotTradeFeed {
+  traderName: string;
+  symbol: string;
+  profit: number;
+  timestamp: string;
+  strategy: string;
+}
+
+function formatTimeAgo(timestamp: string): string {
+  const now = new Date();
+  const tradeTime = new Date(timestamp);
+  const diffMs = now.getTime() - tradeTime.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  
+  if (diffMins < 60) {
+    return `${diffMins}m ago`;
+  } else if (diffMins < 120) {
+    return `1h ${diffMins % 60}m ago`;
+  } else {
+    const hours = Math.floor(diffMins / 60);
+    return `${hours}h ${diffMins % 60}m ago`;
+  }
+}
+
+function formatTraderName(fullName: string): string {
+  const parts = fullName.split(' ');
+  if (parts.length >= 2) {
+    return `${parts[0]} ${parts[1].charAt(0)}.`;
+  }
+  return fullName;
 }
 
 // Fisher-Yates (Knuth) Shuffle function
@@ -239,20 +272,38 @@ const tradingUpdates = shuffleArray([...initialTradingUpdates]); // Use spread o
 export function LiveTradingFeed() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Fetch real trading data from bot
+  const { data: botTrades } = useQuery<BotTradeFeed[]>({
+    queryKey: ["/api/live-feed"],
+    refetchInterval: 30000, // Refresh every 30 seconds
+  });
+
+  // Convert bot trades to display format
+  const realTrades: TradingUpdate[] = botTrades ? botTrades.map((trade, index) => ({
+    id: `bot-${index}`,
+    trader: formatTraderName(trade.traderName),
+    ticker: trade.symbol,
+    profit: `+$${trade.profit.toLocaleString()}`,
+    time: formatTimeAgo(trade.timestamp)
+  })) : [];
+
+  // Use real trades if available, otherwise fallback to hardcoded data
+  const displayTrades = realTrades.length > 0 ? realTrades : tradingUpdates;
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % tradingUpdates.length);
+      setCurrentIndex((prev) => (prev + 1) % displayTrades.length);
     }, 3000); // Change every 3 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [displayTrades.length]);
 
-  // Ensure tradingUpdates is not empty before accessing
-  if (tradingUpdates.length === 0) {
+  // Ensure displayTrades is not empty before accessing
+  if (displayTrades.length === 0) {
     return null; // Or return some loading state
   }
 
-  const currentUpdate = tradingUpdates[currentIndex];
+  const currentUpdate = displayTrades[currentIndex];
 
   return (
     <Card className="border-primary/50 bg-gradient-to-r from-primary/10 to-secondary/10 p-4 animate-glow-pulse" data-testid="card-live-trading-feed">
