@@ -57,6 +57,15 @@ app.use(express.urlencoded({ extended: false }));
 // Serve static files from uploads directory
 app.use("/uploads", express.static("public/uploads"));
 
+// Serve sitemap.xml and BingSiteAuth.xml for SEO
+app.get("/sitemap.xml", (_req, res) => {
+  res.sendFile("sitemap.xml", { root: "public" });
+});
+
+app.get("/BingSiteAuth.xml", (_req, res) => {
+  res.sendFile("BingSiteAuth.xml", { root: "." });
+});
+
 // CSRF protection via Origin/Referer validation for state-changing requests
 app.use((req, res, next) => {
   // Only check state-changing requests to admin endpoints
