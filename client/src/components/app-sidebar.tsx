@@ -10,6 +10,7 @@ import {
   PlayCircle,
   Calculator,
   HelpCircle,
+  Newspaper,
 } from "lucide-react";
 import {
   Sidebar,
@@ -28,6 +29,7 @@ const menuItems = [
   { title: "Watchlist", url: "/watchlist", icon: Eye },
   { title: "Modules", url: "/modules", icon: BookOpen },
   { title: "Video Library", url: "/videos", icon: PlayCircle },
+  { title: "Blog", url: "/blog", icon: Newspaper },
   { title: "Glossary", url: "/glossary", icon: BookText },
   { title: "Tools", url: "/tools", icon: Calculator },
   { title: "Testimonials", url: "/testimonials", icon: MessageSquare },

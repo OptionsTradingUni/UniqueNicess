@@ -9,6 +9,8 @@ import { TestimonialsSlideshow } from "@/components/testimonials-slideshow";
 import { LiveTradingFeed } from "@/components/live-trading-feed";
 import { TelegramContactModal } from "@/components/telegram-contact-modal";
 import { ContactCTA } from "@/components/ContactFloatingButtons";
+import { RecentWins } from "@/components/recent-wins";
+import { TeamProfiles } from "@/components/team-profiles";
 import type { Stats, Testimonial } from "@shared/schema";
 
 function useCountUp(end: number, duration: number = 2000) {
@@ -186,6 +188,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Recent Wins Section */}
+      <section className="py-16 px-6 bg-muted/20">
+        <div className="max-w-7xl mx-auto">
+          <RecentWins />
+        </div>
+      </section>
+
       {/* Testimonials Slideshow */}
       <section className="py-12 px-6 bg-muted/20">
         <div className="max-w-5xl mx-auto space-y-6">
@@ -263,6 +272,13 @@ export default function Home() {
               Depending on your plan, you'll gain access to an online chat board with over 1,500 members to learn from and share trade ideas. You also get direct access to our mentors during trading hours for Q&A and can instantly watch pre-recorded technical training videos.
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Team Profiles */}
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <TeamProfiles onContactClick={handleContactClick} />
         </div>
       </section>
 
