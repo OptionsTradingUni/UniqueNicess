@@ -15,15 +15,15 @@ export function FloatingJoinButton() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50 animate-bounce-slow">
+      <div className="fixed bottom-6 right-6 z-50">
         <Button
-          size="lg"
-          className="rounded-full shadow-2xl bg-gradient-to-r from-primary to-secondary hover:scale-110 transition-transform duration-300 px-6 py-6"
+          size="sm"
+          className="rounded-full shadow-lg bg-gradient-to-r from-primary to-secondary hover:scale-105 transition-all duration-300 px-4 py-2 opacity-90 hover:opacity-100"
           data-testid="button-floating-join"
           onClick={handleClick}
         >
-          <MessageCircle className="w-6 h-6 mr-2" />
-          <span className="font-bold">Join Now</span>
+          <MessageCircle className="w-4 h-4 mr-2" />
+          <span className="font-semibold text-sm">Join</span>
         </Button>
       </div>
 

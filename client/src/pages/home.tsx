@@ -66,7 +66,7 @@ function StatCard({ value, label, icon: Icon, prefix = "", suffix = "", testId }
   const { count, ref } = useCountUp(value);
 
   return (
-    <Card ref={ref} className="relative overflow-hidden hover-elevate border-card-border bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm" data-testid={testId}>
+    <Card ref={ref} className="relative overflow-hidden hover-elevate border-card-border bg-gradient-to-br from-primary/5 to-secondary/5 backdrop-blur-sm" data-testid={testId}>
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <Icon className="w-8 h-8 text-primary" />
@@ -74,7 +74,7 @@ function StatCard({ value, label, icon: Icon, prefix = "", suffix = "", testId }
         </div>
       </CardHeader>
       <CardContent>
-        <div className="text-3xl font-black text-foreground mb-1 animate-count-up" data-testid={`${testId}-value`}>
+        <div className="text-3xl font-black text-foreground mb-1" data-testid={`${testId}-value`}>
           {prefix}{count.toLocaleString()}{suffix}
         </div>
         <p className="text-sm text-muted-foreground font-medium" data-testid={`${testId}-label`}>{label}</p>
@@ -105,9 +105,9 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20 animate-gradient-shift bg-[length:400%_400%]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         
-        <div className="relative max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+        <div className="relative max-w-4xl mx-auto text-center space-y-8">
           <Badge variant="outline" className="text-sm font-semibold px-4 py-1.5 border-primary/50" data-testid="badge-member-count">
             ⚡ Join 1,500+ Successful Traders
           </Badge>

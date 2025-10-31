@@ -276,6 +276,8 @@ export function LiveTradingFeed() {
   const { data: botTrades } = useQuery<BotTradeFeed[]>({
     queryKey: ["/api/live-feed"],
     refetchInterval: 30000, // Refresh every 30 seconds
+    enabled: false, // Disabled until backend endpoint is ready
+    retry: false,
   });
 
   // Convert bot trades to display format
@@ -306,7 +308,7 @@ export function LiveTradingFeed() {
   const currentUpdate = displayTrades[currentIndex];
 
   return (
-    <Card className="border-primary/50 bg-gradient-to-r from-primary/10 to-secondary/10 p-4 animate-glow-pulse" data-testid="card-live-trading-feed">
+    <Card className="border-primary/30 bg-gradient-to-r from-primary/5 to-secondary/5 p-4" data-testid="card-live-trading-feed">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Badge variant="destructive" className="animate-pulse" data-testid="badge-live">
