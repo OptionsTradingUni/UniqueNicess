@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, ChevronRight, BookOpen, CheckCircle2 } from "lucide-react";
 import { TelegramContactModal } from "@/components/telegram-contact-modal";
+import { marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
 import type { Module } from "@shared/schema";
 
 export default function Modules() {
@@ -118,11 +120,13 @@ export default function Modules() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="prose prose-lg dark:prose-invert max-w-none">
-                  <p className="text-muted-foreground leading-relaxed whitespace-pre-line" data-testid={`text-module-content-${currentIndex}`}>
-                    {currentModule.content}
-                  </p>
-                </div>
+                <div 
+                  className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground leading-relaxed"
+                  data-testid={`text-module-content-${currentIndex}`}
+                  dangerouslySetInnerHTML={{ 
+                    __html: DOMPurify.sanitize(marked(currentModule.content) as string) 
+                  }}
+                />
                 
                 {!completedModules.has(currentModule.id) && (
                   <Button 
