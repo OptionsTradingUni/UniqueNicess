@@ -9,7 +9,6 @@ import { TestimonialsSlideshow } from "@/components/testimonials-slideshow";
 import { LiveTradingFeed } from "@/components/live-trading-feed";
 import { TelegramContactModal } from "@/components/telegram-contact-modal";
 import { ContactCTA } from "@/components/ContactFloatingButtons";
-import { RecentWins } from "@/components/recent-wins";
 import { TeamProfiles } from "@/components/team-profiles";
 import type { Stats, Testimonial } from "@shared/schema";
 
@@ -184,27 +183,6 @@ export default function Home() {
               suffix="%"
               testId="stat-win-rate"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Recent Wins Section */}
-      <section className="py-16 px-6 bg-muted/20">
-        <div className="max-w-7xl mx-auto">
-          <RecentWins />
-          
-          {/* Big CTA after Recent Wins */}
-          <div className="mt-16 text-center">
-            <Button 
-              size="lg" 
-              className="text-2xl px-12 py-8 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity shadow-xl"
-              data-testid="button-get-started-main"
-              onClick={handleContactClick}
-            >
-              Get Started Today
-              <ArrowRight className="ml-3 w-6 h-6" />
-            </Button>
-            <p className="text-muted-foreground mt-4">Join 1,500+ traders growing their accounts</p>
           </div>
         </div>
       </section>

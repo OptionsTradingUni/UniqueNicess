@@ -11,6 +11,7 @@ import {
   visitors,
   adminUsers,
   analyticsEvents,
+  liveTrades,
   type Testimonial,
   type VideoLesson,
   type BlogPost,
@@ -21,6 +22,7 @@ import {
   type Visitor,
   type AdminUser,
   type AnalyticsEvent,
+  type LiveTrade,
   type InsertTestimonial,
   type InsertVideoLesson,
   type InsertBlogPost,
@@ -31,6 +33,7 @@ import {
   type InsertVisitor,
   type InsertAdminUser,
   type InsertAnalyticsEvent,
+  type InsertLiveTrade,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -99,6 +102,9 @@ export interface IStorage {
   // Admin Users
   getAdminByUsername(username: string): Promise<AdminUser | undefined>;
   createAdmin(data: InsertAdminUser): Promise<AdminUser>;
+
+  // Live Trades
+  getLiveTrades(limit?: number): Promise<LiveTrade[]>;
 }
 
 export class DatabaseStorage implements IStorage {

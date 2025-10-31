@@ -121,6 +121,16 @@ export const analyticsEvents = pgTable("analytics_events", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Live trades table for Recent Community Wins
+export const liveTrades = pgTable("live_trades", {
+  id: serial("id").primaryKey(),
+  traderName: varchar("trader_name", { length: 255 }).notNull(),
+  symbol: varchar("symbol", { length: 10 }).notNull(),
+  profit: integer("profit").notNull(),
+  strategy: varchar("strategy", { length: 500 }).notNull(),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+});
+
 // ========== INSERT SCHEMAS ==========
 
 export const insertAdminUserSchema = createInsertSchema(adminUsers).omit({ id: true, createdAt: true });
@@ -133,6 +143,7 @@ export const insertStatsSchema = createInsertSchema(stats).omit({ id: true, upda
 export const insertStockSchema = createInsertSchema(stocks).omit({ id: true, updatedAt: true });
 export const insertVisitorSchema = createInsertSchema(visitors).omit({ id: true, firstVisit: true, lastActivity: true });
 export const insertAnalyticsEventSchema = createInsertSchema(analyticsEvents).omit({ id: true, createdAt: true });
+export const insertLiveTradeSchema = createInsertSchema(liveTrades).omit({ id: true, timestamp: true });
 
 // ========== TYPES ==========
 
@@ -165,3 +176,6 @@ export type InsertVisitor = z.infer<typeof insertVisitorSchema>;
 
 export type AnalyticsEvent = typeof analyticsEvents.$inferSelect;
 export type InsertAnalyticsEvent = z.infer<typeof insertAnalyticsEventSchema>;
+
+export type LiveTrade = typeof liveTrades.$inferSelect;
+export type InsertLiveTrade = z.infer<typeof insertLiveTradeSchema>;

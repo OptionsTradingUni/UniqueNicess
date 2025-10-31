@@ -66,17 +66,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Live trading feed endpoint - pulls real trades from bot
-  app.get("/api/live-feed", async (_req, res) => {
-    try {
-      const trades = await getRecentTrades(20);
-      res.json(trades);
-    } catch (error) {
-      console.error("Error fetching live feed:", error);
-      res.json([]);
-    }
-  });
-
   // Testimonials endpoint
   app.get("/api/testimonials", async (_req, res) => {
     try {
