@@ -6,21 +6,21 @@ import { SiDiscord } from "react-icons/si";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
 
-import mentor1 from "@assets/stock_images/professional_male_fi_e2ae8a42.jpg";
-import mentor2 from "@assets/stock_images/professional_female__e611750c.jpg";
-import mentor3 from "@assets/stock_images/professional_male_fi_2591beb9.jpg";
-import mentor4 from "@assets/stock_images/professional_female__e596eb2f.jpg";
-import mentor5 from "@assets/stock_images/professional_male_fi_197c2f6c.jpg";
-import mentor6 from "@assets/stock_images/professional_female__b23883a5.jpg";
-import mentor7 from "@assets/stock_images/professional_male_fi_f4877057.jpg";
-import mentor8 from "@assets/stock_images/professional_female__97e913a3.jpg";
-import mentor9 from "@assets/stock_images/professional_male_fi_313df32c.jpg";
-import mentor10 from "@assets/stock_images/professional_female__80c14521.jpg";
+import mentor1 from "@assets/stock_images/ment1.jpeg";
+import mentor2 from "@assets/stock_images/ment2.jpeg";
+import mentor3 from "@assets/stock_images/ment3.jpeg";
+import mentor4 from "@assets/stock_images/ment4.jpeg";
+import mentor5 from "@assets/stock_images/ment5.jpeg";
+import mentor6 from "@assets/stock_images/ment6.jpeg";
+import mentor7 from "@assets/stock_images/ment7.jpeg";
+import mentor8 from "@assets/stock_images/ment8.jpeg";
+import mentor9 from "@assets/stock_images/ment9.jpeg";
+import mentor10 from "@assets/stock_images/ment10.jpeg";
 
 const mentors = [
   {
     id: 1,
-    name: "The Wealth Prince",
+    name: "The Wealth King",
     role: "Lead Mentor & Founder",
     experience: "11+ Years",
     specialty: "Options Trading & Technical Analysis",
@@ -40,7 +40,7 @@ const mentors = [
   },
   {
     id: 2,
-    name: "Alexandra Morgan",
+    name: "Andrew Diaz",
     role: "Options Strategy Expert",
     experience: "8+ Years",
     specialty: "0DTE & Weekly Options",
@@ -80,7 +80,7 @@ const mentors = [
   },
   {
     id: 4,
-    name: "Sarah Rodriguez",
+    name: "Kevin Powell",
     role: "Day Trading Specialist",
     experience: "7+ Years",
     specialty: "Scalping & Momentum Trading",
@@ -120,7 +120,7 @@ const mentors = [
   },
   {
     id: 6,
-    name: "Jennifer Park",
+    name: "Kentrell hill",
     role: "Swing Trading Expert",
     experience: "6+ Years",
     specialty: "Multi-Week Position Trading",
@@ -160,7 +160,7 @@ const mentors = [
   },
   {
     id: 8,
-    name: "Emily Watson",
+    name: "Josh Tracey",
     role: "Volatility Trading Coach",
     experience: "8+ Years",
     specialty: "VIX & Earnings Plays",
@@ -200,7 +200,7 @@ const mentors = [
   },
   {
     id: 10,
-    name: "Lisa Anderson",
+    name: "Michael Steinbach",
     role: "Fundamental Analysis Coach",
     experience: "11+ Years",
     specialty: "Earnings & Company Analysis",
