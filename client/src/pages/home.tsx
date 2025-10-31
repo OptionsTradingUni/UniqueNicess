@@ -112,7 +112,7 @@ export default function Home() {
             ⚡ Join 1,500+ Traders
           </Badge>
           
-          <h1 className="text-5xl md:text-7xl font-black leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black leading-tight">
             <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
               Master Options Trading
             </span>
@@ -198,7 +198,7 @@ export default function Home() {
       <section className="py-12 px-6 bg-muted/20">
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="text-center">
-            <h2 className="text-4xl font-black mb-2">What Our Members Say</h2>
+            <h2 className="text-3xl font-black mb-2">What Our Members Say</h2>
             <p className="text-lg text-muted-foreground">Real results from real traders</p>
           </div>
           <TestimonialsSlideshow />
@@ -209,7 +209,7 @@ export default function Home() {
       <section className="py-16 px-6 bg-muted/30">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black mb-4">What You Get as a Member</h2>
+            <h2 className="text-3xl md:text-4xl font-black mb-4">What You Get as a Member</h2>
             <p className="text-xl text-muted-foreground">Everything you need to become a successful options trader</p>
           </div>
 
