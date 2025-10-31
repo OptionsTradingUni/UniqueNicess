@@ -7,7 +7,7 @@ const recentWins = [
     id: 1,
     member: "Mike T.",
     strategy: "Iron Condor on SPY",
-    profit: 1245,
+    profit: 3245,
     percentage: 47,
     date: "2 hours ago",
     color: "from-green-500 to-emerald-600",
@@ -16,7 +16,7 @@ const recentWins = [
     id: 2,
     member: "Sarah K.",
     strategy: "0DTE Calls on QQQ",
-    profit: 2890,
+    profit: 5890,
     percentage: 156,
     date: "5 hours ago",
     color: "from-blue-500 to-cyan-600",
@@ -25,7 +25,7 @@ const recentWins = [
     id: 3,
     member: "James R.",
     strategy: "Bull Put Spread",
-    profit: 680,
+    profit: 2680,
     percentage: 34,
     date: "8 hours ago",
     color: "from-purple-500 to-pink-600",
@@ -34,7 +34,7 @@ const recentWins = [
     id: 4,
     member: "Alex M.",
     strategy: "Covered Calls on AAPL",
-    profit: 1520,
+    profit: 4520,
     percentage: 28,
     date: "12 hours ago",
     color: "from-orange-500 to-red-600",
@@ -43,7 +43,7 @@ const recentWins = [
     id: 5,
     member: "Lisa P.",
     strategy: "Calendar Spread",
-    profit: 3200,
+    profit: 7200,
     percentage: 89,
     date: "1 day ago",
     color: "from-indigo-500 to-purple-600",
@@ -52,7 +52,7 @@ const recentWins = [
     id: 6,
     member: "David L.",
     strategy: "Wheel Strategy",
-    profit: 1890,
+    profit: 4890,
     percentage: 42,
     date: "1 day ago",
     color: "from-teal-500 to-green-600",
@@ -358,7 +358,7 @@ export function RecentWins() {
           <div className="grid grid-cols-7 gap-2 mb-6">
             {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day, index) => {
               const heights = [65, 82, 71, 89, 76, 45, 38];
-              const profits = [12400, 18200, 14800, 21500, 16900, 8200, 7100];
+              const profits = [32400, 48200, 38800, 56500, 42900, 18200, 14100];
               return (
                 <div key={day} className="text-center" data-testid={`chart-day-${day.toLowerCase()}`}>
                   <div className="h-32 flex items-end justify-center mb-2">
@@ -379,7 +379,7 @@ export function RecentWins() {
           </div>
           <div className="flex items-center justify-between text-sm text-muted-foreground border-t pt-4">
             <span className="font-semibold">Weekly Total Profits:</span>
-            <span className="text-2xl font-black text-primary">$99,100</span>
+            <span className="text-2xl font-black text-primary">$251,100</span>
           </div>
         </CardContent>
       </Card>

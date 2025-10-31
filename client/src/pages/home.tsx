@@ -195,6 +195,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Team Profiles */}
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <TeamProfiles onContactClick={handleContactClick} />
+        </div>
+      </section>
+
       {/* Testimonials Slideshow */}
       <section className="py-12 px-6 bg-muted/20">
         <div className="max-w-5xl mx-auto space-y-6">
@@ -206,79 +213,99 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Value Props */}
+      {/* What You Get - Combined Section */}
       <section className="py-16 px-6 bg-muted/30">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <Card className="border-card-border hover-elevate" data-testid="card-value-prop-experience">
-            <CardHeader>
-              <CardTitle className="text-2xl">Tired of Chasing Stocks? Experience Matters.</CardTitle>
-            </CardHeader>
-            <CardContent className="text-muted-foreground leading-relaxed">
-              Like most beginners, it's easy to chase stocks hyped on social media. That's not a sustainable path to growth. With over 11 years of combined experience, our mentors provide a proven track record of success. All of our services include detailed trading plans for Swings and Day Trades, so you know exactly when to enter and when to secure profits.
-            </CardContent>
-          </Card>
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black mb-4">What You Get as a Member</h2>
+            <p className="text-xl text-muted-foreground">Everything you need to become a successful options trader</p>
+          </div>
 
-          <Card className="border-card-border hover-elevate" data-testid="card-value-prop-technical">
-            <CardHeader>
-              <CardTitle className="text-2xl">Technical Analysis is Your Edge</CardTitle>
-            </CardHeader>
-            <CardContent className="text-muted-foreground leading-relaxed">
-              You will get access to past training videos and future educational content on technical trading. Topics include support/resistances, Elliott Wave Theory, and Oscillators. Our goal is to equip you with a system and an edge in your trading so you can outperform most indices.
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Membership Features */}
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <Card className="border-card-border bg-gradient-to-br from-card to-accent/10" data-testid="card-membership-features">
-            <CardHeader>
-              <CardTitle className="text-3xl">OTU Short Term Options Trading</CardTitle>
-              <CardDescription className="text-base">
-                Great for new and advanced traders looking for insight, support, and quick day trades.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {[
-                "Access to our Private Day Trade Room (Telegram) where we post day trades, entries, profit targets, and stop losses (3-9 Trades Per Week)",
-                "A Premarket Hitlist each morning",
-                "Private VIP Support (Telegram) where you can chat directly with a mentor during normal business hours",
-                "Live tutorials, trainings, and a library of recorded technical video series",
-                "Live Streaming + Day Trading Premarket Preps",
-                "Option Puts/Calls Ideas, Daily Educational Videos & MORE"
-              ].map((feature, i) => (
-                <div key={i} className="flex gap-3 items-start">
-                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <p className="text-muted-foreground leading-relaxed">{feature}</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Left Column */}
+            <Card className="border-card-border hover-elevate" data-testid="card-expert-guidance">
+              <CardHeader>
+                <CardTitle className="text-2xl flex items-center gap-2">
+                  <Award className="w-6 h-6 text-primary" />
+                  Expert Guidance & Strategy
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground leading-relaxed">
+                  Stop chasing hype. Learn proven strategies from mentors with over 28 years combined experience and a 77% average win rate.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <div className="flex gap-2 items-start">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <p className="text-sm">Detailed trading plans for swings and day trades</p>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <p className="text-sm">Clear entries, profit targets, and stop losses</p>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <p className="text-sm">Technical analysis training (support/resistance, Elliott Wave, oscillators)</p>
+                  </div>
                 </div>
-              ))}
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+              </CardContent>
+            </Card>
 
-      {/* Community */}
-      <section className="py-16 px-6 bg-muted/30">
-        <div className="max-w-4xl mx-auto">
-          <Card className="border-card-border hover-elevate" data-testid="card-community">
+            {/* Right Column */}
+            <Card className="border-card-border hover-elevate" data-testid="card-community-support">
+              <CardHeader>
+                <CardTitle className="text-2xl flex items-center gap-2">
+                  <Users className="w-6 h-6 text-primary" />
+                  Active Community & Support
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-muted-foreground leading-relaxed">
+                  Join 1,500+ members in our private trading community. Learn from others, share ideas, and get direct mentor access.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <div className="flex gap-2 items-start">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <p className="text-sm">Private Telegram day trade room with 3-9 trades per week</p>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <p className="text-sm">Direct mentor support during trading hours</p>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <p className="text-sm">Daily premarket hitlist and analysis</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Full Width Bottom Card */}
+          <Card className="border-card-border bg-gradient-to-br from-primary/5 to-secondary/5" data-testid="card-resources">
             <CardHeader>
-              <div className="flex items-center gap-3 mb-2">
-                <Users className="w-8 h-8 text-primary" />
-                <CardTitle className="text-2xl">A Supportive Community of Over 1,500 Members</CardTitle>
-              </div>
+              <CardTitle className="text-2xl text-center">Educational Resources & Live Sessions</CardTitle>
             </CardHeader>
-            <CardContent className="text-muted-foreground leading-relaxed">
-              Depending on your plan, you'll gain access to an online chat board with over 1,500 members to learn from and share trade ideas. You also get direct access to our mentors during trading hours for Q&A and can instantly watch pre-recorded technical training videos.
+            <CardContent>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center space-y-2">
+                  <div className="text-4xl font-black text-primary">100+</div>
+                  <p className="text-sm text-muted-foreground font-semibold">Training Videos</p>
+                  <p className="text-xs text-muted-foreground">Beginner to advanced strategies</p>
+                </div>
+                <div className="text-center space-y-2">
+                  <div className="text-4xl font-black text-primary">Live</div>
+                  <p className="text-sm text-muted-foreground font-semibold">Streaming Sessions</p>
+                  <p className="text-xs text-muted-foreground">Premarket prep & day trading</p>
+                </div>
+                <div className="text-center space-y-2">
+                  <div className="text-4xl font-black text-primary">Daily</div>
+                  <p className="text-sm text-muted-foreground font-semibold">Trade Ideas</p>
+                  <p className="text-xs text-muted-foreground">Calls, puts & educational content</p>
+                </div>
+              </div>
             </CardContent>
           </Card>
-        </div>
-      </section>
-
-      {/* Team Profiles */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <TeamProfiles onContactClick={handleContactClick} />
         </div>
       </section>
 
