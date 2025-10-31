@@ -115,22 +115,16 @@ export function generateRandomTestimonial(index: number) {
   const date = generateRealisticDate();
   
   // Add images to first 10 testimonials
-  // Distribution: 6 with face photos (index 0,1,2,4,6,8), 4 without (index 3,5,7,9)
-  // All 10 get profit screenshots
+  // All 10 get BOTH face photos AND profit screenshots
   let photo = null;
   let profitImage = null;
   
   if (index < 10) {
-    // All first 10 get profit screenshots (cycle through 3 profit images)
-    const profitImageNum = (index % 3) + 1;
-    profitImage = `/profit-${profitImageNum}.jpg`;
+    // Each testimonial gets its own unique member photo (1-10)
+    photo = `/uploads/member-${index + 1}.jpg`;
     
-    // 6 out of 10 get member photos (more natural distribution)
-    const memberPhotosIndexes = [0, 1, 2, 4, 6, 8];
-    if (memberPhotosIndexes.includes(index)) {
-      const photoNum = memberPhotosIndexes.indexOf(index) + 1;
-      photo = `/member-${photoNum}.jpg`;
-    }
+    // Each testimonial gets its own unique profit screenshot (1-10)
+    profitImage = `/uploads/profit-${index + 1}.jpg`;
   }
   
   return {
