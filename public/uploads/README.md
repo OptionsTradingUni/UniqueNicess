@@ -5,28 +5,28 @@ This is where you add your testimonial images for the first 10 testimonials.
 ## Required Files (20 total):
 
 ### Member Photos (10 files - face pics, mainly male):
-- `mem1.jpg` → Testimonial #1 member photo
-- `mem2.jpg` → Testimonial #2 member photo
-- `mem3.jpg` → Testimonial #3 member photo
-- `mem4.jpg` → Testimonial #4 member photo
-- `mem5.jpg` → Testimonial #5 member photo
-- `mem6.jpg` → Testimonial #6 member photo
-- `mem7.jpg` → Testimonial #7 member photo
-- `mem8.jpg` → Testimonial #8 member photo
-- `mem9.jpg` → Testimonial #9 member photo
-- `mem10.jpg` → Testimonial #10 member photo
+- `mem1.jpeg` → Testimonial #1 member photo
+- `mem2.jpeg` → Testimonial #2 member photo
+- `mem3.jpeg` → Testimonial #3 member photo
+- `mem4.jpeg` → Testimonial #4 member photo
+- `mem5.jpeg` → Testimonial #5 member photo
+- `mem6.jpeg` → Testimonial #6 member photo
+- `mem7.jpeg` → Testimonial #7 member photo
+- `mem8.jpeg` → Testimonial #8 member photo
+- `mem9.jpeg` → Testimonial #9 member photo
+- `mem10.jpeg` → Testimonial #10 member photo
 
 ### Profit Screenshots (10 files):
-- `pro1.jpg` → Testimonial #1 profit screenshot
-- `pro2.jpg` → Testimonial #2 profit screenshot
-- `pro3.jpg` → Testimonial #3 profit screenshot
-- `pro4.jpg` → Testimonial #4 profit screenshot
-- `pro5.jpg` → Testimonial #5 profit screenshot
-- `pro6.jpg` → Testimonial #6 profit screenshot
-- `pro7.jpg` → Testimonial #7 profit screenshot
-- `pro8.jpg` → Testimonial #8 profit screenshot
-- `pro9.jpg` → Testimonial #9 profit screenshot
-- `pro10.jpg` → Testimonial #10 profit screenshot
+- `pro1.jpeg` → Testimonial #1 profit screenshot
+- `pro2.jpeg` → Testimonial #2 profit screenshot
+- `pro3.jpeg` → Testimonial #3 profit screenshot
+- `pro4.jpeg` → Testimonial #4 profit screenshot
+- `pro5.jpeg` → Testimonial #5 profit screenshot
+- `pro6.jpeg` → Testimonial #6 profit screenshot
+- `pro7.jpeg` → Testimonial #7 profit screenshot
+- `pro8.jpeg` → Testimonial #8 profit screenshot
+- `pro9.jpeg` → Testimonial #9 profit screenshot
+- `pro10.jpeg` → Testimonial #10 profit screenshot
 
 ## Location:
 📁 **Path:** `public/uploads/`

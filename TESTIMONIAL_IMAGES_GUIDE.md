@@ -11,30 +11,30 @@ Each of the first 10 testimonials will show BOTH a face photo AND a profit scree
 ### Member Face Photos (10 photos - mainly male)
 Upload these to `public/uploads/`:
 
-- `member-1.jpg` → Testimonial #1
-- `member-2.jpg` → Testimonial #2  
-- `member-3.jpg` → Testimonial #3
-- `member-4.jpg` → Testimonial #4
-- `member-5.jpg` → Testimonial #5
-- `member-6.jpg` → Testimonial #6
-- `member-7.jpg` → Testimonial #7
-- `member-8.jpg` → Testimonial #8
-- `member-9.jpg` → Testimonial #9
-- `member-10.jpg` → Testimonial #10
+- `mem1.jpeg` → Testimonial #1
+- `mem2.jpeg` → Testimonial #2  
+- `mem3.jpeg` → Testimonial #3
+- `mem4.jpeg` → Testimonial #4
+- `mem5.jpeg` → Testimonial #5
+- `mem6.jpeg` → Testimonial #6
+- `mem7.jpeg` → Testimonial #7
+- `mem8.jpeg` → Testimonial #8
+- `mem9.jpeg` → Testimonial #9
+- `mem10.jpeg` → Testimonial #10
 
 ### Profit Screenshots (10 screenshots)
 Upload these to `public/uploads/`:
 
-- `profit-1.jpg` → Testimonial #1 profit screenshot
-- `profit-2.jpg` → Testimonial #2 profit screenshot
-- `profit-3.jpg` → Testimonial #3 profit screenshot
-- `profit-4.jpg` → Testimonial #4 profit screenshot
-- `profit-5.jpg` → Testimonial #5 profit screenshot
-- `profit-6.jpg` → Testimonial #6 profit screenshot
-- `profit-7.jpg` → Testimonial #7 profit screenshot
-- `profit-8.jpg` → Testimonial #8 profit screenshot
-- `profit-9.jpg` → Testimonial #9 profit screenshot
-- `profit-10.jpg` → Testimonial #10 profit screenshot
+- `pro1.jpeg` → Testimonial #1 profit screenshot
+- `pro2.jpeg` → Testimonial #2 profit screenshot
+- `pro3.jpeg` → Testimonial #3 profit screenshot
+- `pro4.jpeg` → Testimonial #4 profit screenshot
+- `pro5.jpeg` → Testimonial #5 profit screenshot
+- `pro6.jpeg` → Testimonial #6 profit screenshot
+- `pro7.jpeg` → Testimonial #7 profit screenshot
+- `pro8.jpeg` → Testimonial #8 profit screenshot
+- `pro9.jpeg` → Testimonial #9 profit screenshot
+- `pro10.jpeg` → Testimonial #10 profit screenshot
 
 ## Current Distribution
 
@@ -72,15 +72,15 @@ Example:
   profit: "$2,847",  // ← EDIT THIS TO MATCH YOUR SCREENSHOT
   rating: 5,
   date: "2024-01-15",
-  photo: "/uploads/member-1.jpg",
-  profitImage: "/uploads/profit-1.jpg",
+  photo: "/uploads/mem1.jpeg",
+  profitImage: "/uploads/pro1.jpeg",
 }
 ```
 
 ### Step 2: Upload Your Images
 Upload all 20 images to **`public/uploads/`** folder with these exact names:
-- `member-1.jpg` through `member-10.jpg`
-- `profit-1.jpg` through `profit-10.jpg`
+- `mem1.jpeg` through `mem10.jpeg`
+- `pro1.jpeg` through `pro10.jpeg`
 
 ### Step 3: Restart
 After editing and uploading images, the changes will appear automatically.
