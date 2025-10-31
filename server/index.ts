@@ -14,6 +14,19 @@ if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1);
 }
 
+// Force HTTPS redirect in production (fixes Instagram/TikTok in-app browser warnings)
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === "production") {
+    // Check if request is coming via HTTP
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+    if (protocol === 'http') {
+      // Redirect to HTTPS with 301 (permanent redirect)
+      return res.redirect(301, `https://${req.get('host')}${req.url}`);
+    }
+  }
+  next();
+});
+
 // Validate SESSION_SECRET is set
 if (!process.env.SESSION_SECRET && process.env.NODE_ENV === "production") {
   throw new Error("SESSION_SECRET environment variable must be set in production");
