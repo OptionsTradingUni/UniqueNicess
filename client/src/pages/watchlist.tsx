@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, TrendingDown, Eye, ExternalLink } from "lucide-react";
+import { TrendingUp, TrendingDown, Eye } from "lucide-react";
 import type { Stock } from "@shared/schema";
 
 export default function Watchlist() {
@@ -95,31 +95,6 @@ export default function Watchlist() {
                     {stock.change >= 0 ? '+' : ''}${stock.change.toFixed(2)}
                   </div>
                 </div>
-
-                {stock.news && stock.news.length > 0 && (
-                  <div className="pt-4 border-t border-border">
-                    <p className="text-xs font-semibold text-muted-foreground mb-2">
-                      Latest News
-                    </p>
-                    <div className="space-y-2">
-                      {stock.news.slice(0, 2).map((item, idx) => (
-                        <a
-                          key={idx}
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block text-sm hover:text-primary transition-colors group"
-                          data-testid={`link-news-${stock.symbol}-${idx}`}
-                        >
-                          <div className="flex items-start gap-2">
-                            <ExternalLink className="w-3 h-3 mt-1 shrink-0 opacity-50 group-hover:opacity-100" />
-                            <span className="line-clamp-2 leading-tight">{item.headline}</span>
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </CardContent>
             </Card>
           ))}
