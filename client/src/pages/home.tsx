@@ -104,15 +104,15 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-12 px-6 overflow-hidden">
+      <section className="relative py-20 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
         
-        <div className="relative max-w-5xl mx-auto text-center space-y-6">
+        <div className="relative max-w-4xl mx-auto text-center space-y-8">
           <Badge variant="outline" className="text-sm font-semibold px-4 py-1.5 border-primary/50" data-testid="badge-member-count">
-            ⚡ Join 1,500+ Traders
+            ⚡ Join 1,500+ Successful Traders
           </Badge>
           
-          <h1 className="text-4xl md:text-5xl font-black leading-tight">
+          <h1 className="text-5xl md:text-7xl font-black leading-tight">
             <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
               Master Options Trading
             </span>
@@ -120,24 +120,26 @@ export default function Home() {
             <span className="text-foreground">with Expert Mentorship</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Stop chasing hype. Learn proven strategies, master technical analysis, and grow with a community of traders who win together.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
-              data-testid="button-become-member"
-              onClick={handleContactClick}
-            >
-              Get Started
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+            <div className="flex flex-col gap-2">
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
+                data-testid="button-become-member"
+                onClick={handleContactClick}
+              >
+                Get Started
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </div>
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-2"
+              className="text-lg px-8 py-6 border-2"
               data-testid="link-success-stories"
               asChild
             >
@@ -157,8 +159,8 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 px-6">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <StatCard
               value={stats?.tradesCalled || 2489}
@@ -186,8 +188,8 @@ export default function Home() {
       </section>
 
       {/* Team Profiles */}
-      <section className="py-12 px-6">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
           <TeamProfiles onContactClick={handleContactClick} />
         </div>
       </section>
@@ -196,19 +198,19 @@ export default function Home() {
       <section className="py-12 px-6 bg-muted/20">
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-2">What Our Members Say</h2>
-            <p className="text-base md:text-lg text-muted-foreground">Real results from real traders</p>
+            <h2 className="text-4xl font-black mb-2">What Our Members Say</h2>
+            <p className="text-lg text-muted-foreground">Real results from real traders</p>
           </div>
           <TestimonialsSlideshow />
         </div>
       </section>
 
       {/* What You Get - Combined Section */}
-      <section className="py-12 px-6 bg-muted/30">
-        <div className="max-w-5xl mx-auto space-y-12">
+      <section className="py-16 px-6 bg-muted/30">
+        <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">What You Get as a Member</h2>
-            <p className="text-base md:text-lg text-muted-foreground">Everything you need to become a successful options trader</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">What You Get as a Member</h2>
+            <p className="text-xl text-muted-foreground">Everything you need to become a successful options trader</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
