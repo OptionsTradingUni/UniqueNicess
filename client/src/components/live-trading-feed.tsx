@@ -276,8 +276,6 @@ export function LiveTradingFeed() {
   const { data: botTrades } = useQuery<BotTradeFeed[]>({
     queryKey: ["/api/live-feed"],
     refetchInterval: 30000, // Refresh every 30 seconds
-    enabled: false, // Disabled until backend endpoint is ready
-    retry: false,
   });
 
   // Convert bot trades to display format
