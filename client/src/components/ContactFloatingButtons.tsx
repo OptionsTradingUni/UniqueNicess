@@ -60,7 +60,7 @@ export function ContactFloatingButtons() {
 
   return (
     <>
-      <div className="fixed top-[140px] md:top-24 md:bottom-auto md:right-6 right-3 z-40 flex flex-col gap-2 pointer-events-auto">
+      <div className="fixed top-[140px] md:top-24 md:bottom-auto md:right-6 right-3 z-[100] flex flex-col gap-2 pointer-events-auto">
         <Button
           onClick={handleTelegramClick}
           size="icon"

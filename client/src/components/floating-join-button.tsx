@@ -15,7 +15,7 @@ export function FloatingJoinButton() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-[100]">
         <Button
           size="sm"
           className="rounded-full shadow-lg bg-gradient-to-r from-primary to-secondary hover:scale-105 transition-all duration-300 px-4 py-2 opacity-90 hover:opacity-100"

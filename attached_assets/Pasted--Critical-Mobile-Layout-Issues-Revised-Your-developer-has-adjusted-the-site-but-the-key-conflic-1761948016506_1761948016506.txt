@@ -1,0 +1,19 @@
+🛑 Critical Mobile Layout Issues (Revised)
+Your developer has adjusted the site, but the key conflicts remain. The problems are still related to fixed positioning (CSS position: fixed;) elements being miscalculated by the mobile browser's "viewport."
+1. The Core Problem: Footer Overlap (Still Critical)
+The dark copyright footer bar is still covering content as the user scrolls, but now it's overlapping the floating Join button.
+• What's Happening: The footer is using a fixed position at the bottom of the screen. When the user scrolls to the end of the page, the content above the footer scrolls under it instead of stopping short.
+• Action to Take: The developer must decide if the footer should be:
+• A. Fixed: If it's fixed, they must add a large padding-bottom to the main content container (or <body>) equal to the height of the footer. This creates a safe space so the content doesn't scroll beneath it.
+• B. Relative: If it only needs to appear at the end of the page, they should change its position to position: relative; so it scrolls with the page content naturally.
+2. Floating Icon Overlap & Misplacement
+The Telegram and Discord icons are now positioned lower, which is good, but they are now overlapping the content they are next to.
+• What's Happening: The icons are floating, but the content (like the text "Our next winning trade could be minutes away!" and "Join Discord") is being written underneath the icons.
+• Action to Take: This is likely an issue with the element flow and size.
+• CSS: The icons or their container need to be removed from the normal document flow using a CSS property like float: right; or the surrounding container needs a padding-right (or margin-right) that is wide enough to push the text over and avoid the space where the icons are floating.
+• Z-Index Check: Ensure the icons have a high z-index value (e.g., z-index: 100) so they float clearly above the content.
+3. New Overlap Issue: The Floating Join Button
+The floating blue/pink Join button at the bottom right is partially hidden behind the fixed footer.
+• Action to Take: This is a z-index and bottom positioning conflict.
+• Z-Index: The Join button must have a higher z-index than the footer to ensure it is always visually on top.
+• Bottom Position: The button's bottom CSS property needs to be adjusted so it sits clearly above the fixed footer element. If the footer is 50px high, the button should be set to something like bottom: 60px;.
