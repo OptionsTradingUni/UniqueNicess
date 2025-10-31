@@ -114,14 +114,33 @@ export function generateRandomTestimonial(index: number) {
   const rating = STAR_RATINGS[Math.floor(Math.random() * STAR_RATINGS.length)];
   const date = generateRealisticDate();
   
+  // Add images to first 10 testimonials
+  // Distribution: 6 with face photos (index 0,1,2,4,6,8), 4 without (index 3,5,7,9)
+  // All 10 get profit screenshots
+  let photo = null;
+  let profitImage = null;
+  
+  if (index < 10) {
+    // All first 10 get profit screenshots (cycle through 3 profit images)
+    const profitImageNum = (index % 3) + 1;
+    profitImage = `/profit-${profitImageNum}.jpg`;
+    
+    // 6 out of 10 get member photos (more natural distribution)
+    const memberPhotosIndexes = [0, 1, 2, 4, 6, 8];
+    if (memberPhotosIndexes.includes(index)) {
+      const photoNum = memberPhotosIndexes.indexOf(index) + 1;
+      photo = `/member-${photoNum}.jpg`;
+    }
+  }
+  
   return {
     name,
     testimonial,
     profit,
     rating,
     date,
-    photo: null,
-    profitImage: null,
+    photo,
+    profitImage,
   };
 }
 

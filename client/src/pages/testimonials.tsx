@@ -73,7 +73,7 @@ export default function Testimonials() {
                     <Avatar className="w-16 h-16 border-2 border-primary" data-testid={`avatar-testimonial-${currentIndex}`}>
                       {currentTestimonial.photo && (
                         <AvatarImage 
-                          src={`/attached_assets/stock_images/${currentTestimonial.photo}`} 
+                          src={currentTestimonial.photo} 
                           alt={currentTestimonial.name}
                         />
                       )}
@@ -112,7 +112,7 @@ export default function Testimonials() {
                   {currentTestimonial.profitImage && (
                     <div className="rounded-lg overflow-hidden border border-border">
                       <img 
-                        src={`/attached_assets/stock_images/${currentTestimonial.profitImage}`}
+                        src={currentTestimonial.profitImage}
                         alt="Trading profits"
                         className="w-full h-64 object-cover"
                       />

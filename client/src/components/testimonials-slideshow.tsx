@@ -50,7 +50,7 @@ export function TestimonialsSlideshow() {
               <Avatar className="w-24 h-24 border-4 border-primary" data-testid={`avatar-slide-${currentIndex}`}>
                 {current.photo && (
                   <AvatarImage 
-                    src={`/attached_assets/stock_images/${current.photo}`} 
+                    src={current.photo} 
                     alt={current.name}
                   />
                 )}
