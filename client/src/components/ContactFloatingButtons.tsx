@@ -1,44 +1,183 @@
-import { MessageCircle, Send } from "lucide-react";
+import { useState } from "react";
+import { MessageCircle, Send, Copy, Check, ExternalLink } from "lucide-react";
 import { SiDiscord } from "react-icons/si";
 import { useLocation } from "wouter";
 import { trackTelegramClick, trackDiscordClick } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 
 export function ContactFloatingButtons() {
   const [location] = useLocation();
+  const [telegramOpen, setTelegramOpen] = useState(false);
+  const [discordOpen, setDiscordOpen] = useState(false);
+  const [telegramCopied, setTelegramCopied] = useState(false);
+  const [discordCopied, setDiscordCopied] = useState(false);
+  const { toast } = useToast();
+
+  const telegramUsername = "@thewealthprince0";
+  const telegramLink = "https://t.me/thewealthprince0";
+  const discordInvite = "https://discord.gg/zruqE5wB";
 
   const handleTelegramClick = () => {
     trackTelegramClick(location);
-    window.open("https://t.me/thewealthprince0", "_blank");
+    setTelegramOpen(true);
   };
 
   const handleDiscordClick = () => {
     trackDiscordClick(location);
-    window.open("https://discord.gg/zruqE5wB", "_blank");
+    setDiscordOpen(true);
+  };
+
+  const copyToClipboard = async (text: string, type: "telegram" | "discord") => {
+    try {
+      await navigator.clipboard.writeText(text);
+      if (type === "telegram") {
+        setTelegramCopied(true);
+        setTimeout(() => setTelegramCopied(false), 2000);
+      } else {
+        setDiscordCopied(true);
+        setTimeout(() => setDiscordCopied(false), 2000);
+      }
+      toast({
+        title: "Copied!",
+        description: `${type === "telegram" ? "Telegram username" : "Discord invite link"} copied to clipboard.`,
+      });
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please try copying manually.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
-    <div className="fixed bottom-32 md:bottom-36 right-4 md:right-6 z-40 flex flex-row md:flex-col gap-3">
-      <Button
-        onClick={handleTelegramClick}
-        size="lg"
-        className="h-12 w-12 md:h-14 md:w-14 rounded-full shadow-2xl bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 hover:scale-110 group"
-        data-testid="floating-telegram-button"
-        title="Message on Telegram"
-      >
-        <Send className="h-5 w-5 md:h-6 md:w-6 text-white group-hover:rotate-12 transition-transform" />
-      </Button>
-      
-      <Button
-        onClick={handleDiscordClick}
-        size="lg"
-        className="h-12 w-12 md:h-14 md:w-14 rounded-full shadow-2xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800 transition-all duration-300 hover:scale-110 group"
-        data-testid="floating-discord-button"
-        title="Join Discord Community"
-      >
-        <SiDiscord className="h-5 w-5 md:h-6 md:w-6 text-white group-hover:scale-110 transition-transform" />
-      </Button>
-    </div>
+    <>
+      <div className="fixed bottom-32 md:bottom-36 right-4 md:right-6 z-40 flex flex-row md:flex-col gap-3">
+        <Button
+          onClick={handleTelegramClick}
+          size="lg"
+          className="h-12 w-12 md:h-14 md:w-14 rounded-full shadow-2xl bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 hover:scale-110 group"
+          data-testid="floating-telegram-button"
+          title="Message on Telegram"
+        >
+          <Send className="h-5 w-5 md:h-6 md:w-6 text-white group-hover:rotate-12 transition-transform" />
+        </Button>
+        
+        <Button
+          onClick={handleDiscordClick}
+          size="lg"
+          className="h-12 w-12 md:h-14 md:w-14 rounded-full shadow-2xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800 transition-all duration-300 hover:scale-110 group"
+          data-testid="floating-discord-button"
+          title="Join Discord Community"
+        >
+          <SiDiscord className="h-5 w-5 md:h-6 md:w-6 text-white group-hover:scale-110 transition-transform" />
+        </Button>
+      </div>
+
+      <Dialog open={telegramOpen} onOpenChange={setTelegramOpen}>
+        <DialogContent className="sm:max-w-md" data-testid="telegram-modal">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                <Send className="h-5 w-5 text-white" />
+              </div>
+              Message on Telegram
+            </DialogTitle>
+            <DialogDescription>
+              Copy the username below to message us on Telegram or click to open directly.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="flex-1 p-3 bg-muted dark:bg-muted/50 rounded-lg font-mono text-sm">
+                {telegramUsername}
+              </div>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => copyToClipboard(telegramUsername, "telegram")}
+                data-testid="copy-telegram-button"
+              >
+                {telegramCopied ? (
+                  <Check className="h-4 w-4 text-green-500" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
+
+            <Button
+              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
+              onClick={() => {
+                window.open(telegramLink, "_blank");
+                setTelegramOpen(false);
+              }}
+              data-testid="open-telegram-button"
+            >
+              <ExternalLink className="mr-2 h-4 w-4" />
+              Open Telegram
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={discordOpen} onOpenChange={setDiscordOpen}>
+        <DialogContent className="sm:max-w-md" data-testid="discord-modal">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <div className="h-10 w-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                <SiDiscord className="h-5 w-5 text-white" />
+              </div>
+              Join Discord Community
+            </DialogTitle>
+            <DialogDescription>
+              Copy the invite link below or click to join our Discord community.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="flex-1 p-3 bg-muted dark:bg-muted/50 rounded-lg font-mono text-sm break-all">
+                {discordInvite}
+              </div>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => copyToClipboard(discordInvite, "discord")}
+                data-testid="copy-discord-button"
+              >
+                {discordCopied ? (
+                  <Check className="h-4 w-4 text-green-500" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
+
+            <Button
+              className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700"
+              onClick={() => {
+                window.open(discordInvite, "_blank");
+                setDiscordOpen(false);
+              }}
+              data-testid="open-discord-button"
+            >
+              <ExternalLink className="mr-2 h-4 w-4" />
+              Join Discord
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 
