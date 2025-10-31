@@ -1,67 +1,29 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, DollarSign, Target, BarChart3, TrendingDown } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { formatDistanceToNow } from "date-fns";
 
-const recentWins = [
-  {
-    id: 1,
-    member: "Mike T.",
-    strategy: "Iron Condor on SPY",
-    profit: 3245,
-    percentage: 47,
-    date: "2 hours ago",
-    color: "from-green-500 to-emerald-600",
-  },
-  {
-    id: 2,
-    member: "Sarah K.",
-    strategy: "0DTE Calls on QQQ",
-    profit: 5890,
-    percentage: 156,
-    date: "5 hours ago",
-    color: "from-blue-500 to-cyan-600",
-  },
-  {
-    id: 3,
-    member: "James R.",
-    strategy: "Bull Put Spread",
-    profit: 2680,
-    percentage: 34,
-    date: "8 hours ago",
-    color: "from-purple-500 to-pink-600",
-  },
-  {
-    id: 4,
-    member: "Alex M.",
-    strategy: "Covered Calls on AAPL",
-    profit: 4520,
-    percentage: 28,
-    date: "12 hours ago",
-    color: "from-orange-500 to-red-600",
-  },
-  {
-    id: 5,
-    member: "Lisa P.",
-    strategy: "Calendar Spread",
-    profit: 7200,
-    percentage: 89,
-    date: "1 day ago",
-    color: "from-indigo-500 to-purple-600",
-  },
-  {
-    id: 6,
-    member: "David L.",
-    strategy: "Wheel Strategy",
-    profit: 4890,
-    percentage: 42,
-    date: "1 day ago",
-    color: "from-teal-500 to-green-600",
-  },
+interface TradeFeedItem {
+  traderName: string;
+  symbol: string;
+  profit: number;
+  timestamp: string;
+  strategy: string;
+}
+
+const colorPalette = [
+  "from-green-500 to-emerald-600",
+  "from-blue-500 to-cyan-600",
+  "from-purple-500 to-pink-600",
+  "from-orange-500 to-red-600",
+  "from-indigo-500 to-purple-600",
+  "from-teal-500 to-green-600",
 ];
 
 const comparisonData = {
   before: {
-    avgMonthly: 450,
+    avgMonthly: 2850,
     winRate: 38,
     emotionalTrading: 85,
     strategyKnowledge: 25,
@@ -74,7 +36,28 @@ const comparisonData = {
   },
 };
 
+function calculatePercentageReturn(profit: number): number {
+  const baseCapital = 5000;
+  const returnPercent = (profit / baseCapital) * 100;
+  return Math.min(Math.round(returnPercent), 200);
+}
+
 export function RecentWins() {
+  const { data: liveTrades, isLoading } = useQuery<TradeFeedItem[]>({
+    queryKey: ["/api/live-feed"],
+    refetchInterval: 60000,
+  });
+
+  const recentWins = liveTrades?.slice(0, 6).map((trade, index) => ({
+    id: index + 1,
+    member: trade.traderName,
+    strategy: trade.strategy,
+    profit: trade.profit,
+    percentage: calculatePercentageReturn(trade.profit),
+    date: formatDistanceToNow(new Date(trade.timestamp), { addSuffix: true }),
+    color: colorPalette[index % colorPalette.length],
+  })) || [];
+
   const improvement = {
     profit: Math.round(((comparisonData.after.avgMonthly - comparisonData.before.avgMonthly) / comparisonData.before.avgMonthly) * 100),
     winRate: comparisonData.after.winRate - comparisonData.before.winRate,
@@ -101,7 +84,24 @@ export function RecentWins() {
 
       {/* Recent Wins Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {recentWins.map((win) => (
+        {isLoading ? (
+          Array.from({ length: 6 }).map((_, i) => (
+            <Card key={i} className="animate-pulse">
+              <CardHeader>
+                <div className="h-4 bg-muted rounded w-1/2 mb-2"></div>
+                <div className="h-6 bg-muted rounded w-3/4"></div>
+              </CardHeader>
+              <CardContent>
+                <div className="h-8 bg-muted rounded w-1/2"></div>
+              </CardContent>
+            </Card>
+          ))
+        ) : recentWins.length === 0 ? (
+          <div className="col-span-full text-center py-8 text-muted-foreground">
+            No recent trades available. Check back soon!
+          </div>
+        ) : (
+          recentWins.map((win) => (
           <Card
             key={win.id}
             className="relative overflow-hidden border-card-border hover-elevate transition-all group"
@@ -137,7 +137,8 @@ export function RecentWins() {
               </div>
             </CardContent>
           </Card>
-        ))}
+          ))
+        )}
       </div>
 
       {/* Before/After Comparison Section */}

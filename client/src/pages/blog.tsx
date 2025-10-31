@@ -28,7 +28,7 @@ export default function Blog() {
 
     const metaKeywords = document.createElement('meta');
     metaKeywords.name = "keywords";
-    metaKeywords.content = "options trading, how to trade options, options strategies, day trading, passive income, stock market, trading for beginners, options Greeks, technical analysis, 0DTE trading, covered calls, iron condor, options income";
+    metaKeywords.content = "options trading, how to trade options, options strategies, day trading, passive income, stock market, trading for beginners, options Greeks, technical analysis, 0DTE trading, covered calls, iron condor, options income, options trading for beginners, best options trading strategies, how to make money with options, options trading course, learn options trading, options trading education, options trading profits, options trading signals, free options trading course, options trading tips, bull put spread, bear call spread, vertical spreads, calendar spreads, diagonal spreads, butterfly spreads, option premium, option chain, implied volatility, theta decay, delta hedging, gamma scalping, vega risk, weekly options trading, monthly options, LEAPS options, SPY options, QQQ options, stock options strategies, index options, ETF options, earnings options play, options trading mentor, options trading community, options trading discord, options trading telegram, selling options for income, options wheel strategy, cash secured puts, poor man's covered call, synthetic positions, options backtesting, options trading platform, best broker for options, options trading tax, wash sale rule options, options trading journal, risk management options trading";
     document.head.appendChild(metaKeywords);
 
     const ogTitle = document.createElement('meta');
@@ -144,14 +144,14 @@ export default function Blog() {
 
         {/* Featured Post */}
         {featuredPost && !searchTerm && (
-          <div className="relative">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-              <Badge className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 text-sm font-bold">
+          <div className="relative mt-8">
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10">
+              <Badge className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 text-sm font-bold shadow-lg">
                 ⭐ Featured Article
               </Badge>
             </div>
             <Card 
-              className="border-2 border-primary/50 hover-elevate transition-all overflow-hidden"
+              className="border-2 border-primary/50 hover-elevate transition-all overflow-hidden pt-2"
               data-testid={`card-featured-post-${featuredPost.id}`}
             >
               <CardHeader className="space-y-4">

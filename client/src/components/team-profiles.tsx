@@ -1,8 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Users, Award, TrendingUp, BookOpen, Send } from "lucide-react";
+import { Users, Award, TrendingUp, BookOpen, Send, ChevronLeft, ChevronRight } from "lucide-react";
 import { SiDiscord } from "react-icons/si";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback } from "react";
+
+import mentor1 from "@assets/stock_images/professional_male_fi_e2ae8a42.jpg";
+import mentor2 from "@assets/stock_images/professional_female__e611750c.jpg";
+import mentor3 from "@assets/stock_images/professional_male_fi_2591beb9.jpg";
+import mentor4 from "@assets/stock_images/professional_female__e596eb2f.jpg";
+import mentor5 from "@assets/stock_images/professional_male_fi_197c2f6c.jpg";
+import mentor6 from "@assets/stock_images/professional_female__b23883a5.jpg";
+import mentor7 from "@assets/stock_images/professional_male_fi_f4877057.jpg";
+import mentor8 from "@assets/stock_images/professional_female__97e913a3.jpg";
+import mentor9 from "@assets/stock_images/professional_male_fi_313df32c.jpg";
+import mentor10 from "@assets/stock_images/professional_female__80c14521.jpg";
 
 const mentors = [
   {
@@ -11,6 +24,7 @@ const mentors = [
     role: "Lead Mentor & Founder",
     experience: "11+ Years",
     specialty: "Options Trading & Technical Analysis",
+    image: mentor1,
     achievements: [
       "76% Win Rate on Swing Trades",
       "Trained 1,500+ Successful Traders",
@@ -26,10 +40,11 @@ const mentors = [
   },
   {
     id: 2,
-    name: "Senior Trading Coach",
+    name: "Alexandra Morgan",
     role: "Options Strategy Expert",
     experience: "8+ Years",
     specialty: "0DTE & Weekly Options",
+    image: mentor2,
     achievements: [
       "Specialized in Same-Day Expiration Trades",
       "82% Win Rate on 0DTE Strategies",
@@ -45,10 +60,11 @@ const mentors = [
   },
   {
     id: 3,
-    name: "Risk Management Specialist",
+    name: "Marcus Chen",
     role: "Portfolio Strategy Mentor",
     experience: "9+ Years",
     specialty: "Risk Management & Position Sizing",
+    image: mentor3,
     achievements: [
       "Expert in Portfolio Diversification",
       "Wheel Strategy Specialist",
@@ -62,9 +78,163 @@ const mentors = [
     },
     color: "from-purple-500 to-pink-600",
   },
+  {
+    id: 4,
+    name: "Sarah Rodriguez",
+    role: "Day Trading Specialist",
+    experience: "7+ Years",
+    specialty: "Scalping & Momentum Trading",
+    image: mentor4,
+    achievements: [
+      "Expert in Intraday Price Action",
+      "78% Win Rate on Day Trades",
+      "Former Prop Trader",
+      "Specializes in High-Volume Setups",
+    ],
+    stats: {
+      trades: "1,600+",
+      students: "750+",
+      winRate: "78%",
+    },
+    color: "from-orange-500 to-red-600",
+  },
+  {
+    id: 5,
+    name: "David Thompson",
+    role: "Technical Analysis Coach",
+    experience: "10+ Years",
+    specialty: "Chart Patterns & Indicators",
+    image: mentor5,
+    achievements: [
+      "Master of Elliott Wave Theory",
+      "Advanced Fibonacci Specialist",
+      "Published Technical Analyst",
+      "Trained 800+ Traders in TA",
+    ],
+    stats: {
+      trades: "2,200+",
+      students: "800+",
+      winRate: "73%",
+    },
+    color: "from-indigo-500 to-purple-600",
+  },
+  {
+    id: 6,
+    name: "Jennifer Park",
+    role: "Swing Trading Expert",
+    experience: "6+ Years",
+    specialty: "Multi-Week Position Trading",
+    image: mentor6,
+    achievements: [
+      "Swing Trading Specialist",
+      "81% Win Rate on Weekly Trades",
+      "Options Greeks Expert",
+      "Risk-Reward Optimization Pro",
+    ],
+    stats: {
+      trades: "1,400+",
+      students: "650+",
+      winRate: "81%",
+    },
+    color: "from-teal-500 to-green-600",
+  },
+  {
+    id: 7,
+    name: "Robert Johnson",
+    role: "Income Strategy Mentor",
+    experience: "12+ Years",
+    specialty: "Covered Calls & Cash-Secured Puts",
+    image: mentor7,
+    achievements: [
+      "Passive Income Specialist",
+      "Wheel Strategy Pioneer",
+      "Managing $2M+ Portfolio",
+      "Consistent Monthly Income Focus",
+    ],
+    stats: {
+      trades: "2,600+",
+      students: "1,100+",
+      winRate: "75%",
+    },
+    color: "from-green-500 to-emerald-600",
+  },
+  {
+    id: 8,
+    name: "Emily Watson",
+    role: "Volatility Trading Coach",
+    experience: "8+ Years",
+    specialty: "VIX & Earnings Plays",
+    image: mentor8,
+    achievements: [
+      "Volatility Expert",
+      "Earnings Season Specialist",
+      "83% Win Rate on Vol Plays",
+      "Former Market Maker",
+    ],
+    stats: {
+      trades: "1,900+",
+      students: "700+",
+      winRate: "83%",
+    },
+    color: "from-pink-500 to-rose-600",
+  },
+  {
+    id: 9,
+    name: "James Wilson",
+    role: "Spreads & Multi-Leg Expert",
+    experience: "9+ Years",
+    specialty: "Complex Option Strategies",
+    image: mentor9,
+    achievements: [
+      "Iron Butterfly Master",
+      "Calendar Spread Specialist",
+      "Advanced Strategy Architect",
+      "Risk-Defined Trade Expert",
+    ],
+    stats: {
+      trades: "2,000+",
+      students: "850+",
+      winRate: "77%",
+    },
+    color: "from-cyan-500 to-blue-600",
+  },
+  {
+    id: 10,
+    name: "Lisa Anderson",
+    role: "Fundamental Analysis Coach",
+    experience: "11+ Years",
+    specialty: "Earnings & Company Analysis",
+    image: mentor10,
+    achievements: [
+      "MBA in Finance",
+      "Earnings Report Specialist",
+      "Long-Term Strategy Focus",
+      "LEAPS Options Expert",
+    ],
+    stats: {
+      trades: "2,300+",
+      students: "950+",
+      winRate: "76%",
+    },
+    color: "from-amber-500 to-orange-600",
+  },
 ];
 
 export function TeamProfiles({ onContactClick }: { onContactClick?: () => void }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    align: "start",
+    slidesToScroll: 1,
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   return (
     <div className="space-y-12">
       {/* Section Header */}
@@ -80,22 +250,27 @@ export function TeamProfiles({ onContactClick }: { onContactClick?: () => void }
         </p>
       </div>
 
-      {/* Mentor Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {mentors.map((mentor) => (
-          <Card
-            key={mentor.id}
-            className="relative overflow-hidden border-card-border hover-elevate transition-all group"
-            data-testid={`card-mentor-${mentor.id}`}
-          >
-            <div className={`absolute inset-0 bg-gradient-to-br ${mentor.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
-            
-            {/* Profile Image Placeholder */}
-            <div className="relative h-48 bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-              <div className={`w-32 h-32 rounded-full bg-gradient-to-br ${mentor.color} flex items-center justify-center shadow-2xl`}>
-                <Users className="w-16 h-16 text-white" />
-              </div>
-            </div>
+      {/* Mentor Cards Carousel */}
+      <div className="relative">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex gap-6">
+            {mentors.map((mentor) => (
+              <div key={mentor.id} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.333%]">
+                <Card
+                  className="relative overflow-hidden border-card-border hover-elevate transition-all group h-full"
+                  data-testid={`card-mentor-${mentor.id}`}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${mentor.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
+                  
+                  {/* Profile Image */}
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={mentor.image} 
+                      alt={mentor.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent`} />
+                  </div>
 
             <CardHeader className="relative text-center pb-3">
               <Badge className="mx-auto mb-3 bg-primary" data-testid={`badge-experience-${mentor.id}`}>
@@ -156,7 +331,30 @@ export function TeamProfiles({ onContactClick }: { onContactClick?: () => void }
               </div>
             </CardContent>
           </Card>
-        ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Carousel Navigation */}
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-background/95 backdrop-blur-sm hover:bg-background z-10 shadow-lg"
+          onClick={scrollPrev}
+          data-testid="button-prev-mentor"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-background/95 backdrop-blur-sm hover:bg-background z-10 shadow-lg"
+          onClick={scrollNext}
+          data-testid="button-next-mentor"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </Button>
       </div>
 
       {/* Call to Action */}
@@ -196,21 +394,21 @@ export function TeamProfiles({ onContactClick }: { onContactClick?: () => void }
               <div className="flex items-center justify-center mb-2">
                 <TrendingUp className="w-6 h-6 text-primary" />
               </div>
-              <div className="text-2xl font-black text-primary">28+</div>
-              <p className="text-sm text-muted-foreground font-semibold">Years Combined Experience</p>
+              <div className="text-2xl font-black text-primary">93+ Years</div>
+              <p className="text-sm text-muted-foreground font-semibold">Combined Experience</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 <Users className="w-6 h-6 text-primary" />
               </div>
-              <div className="text-2xl font-black text-primary">3,600+</div>
+              <div className="text-2xl font-black text-primary">9,250+</div>
               <p className="text-sm text-muted-foreground font-semibold">Students Trained</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 <Award className="w-6 h-6 text-primary" />
               </div>
-              <div className="text-2xl font-black text-primary">77%</div>
+              <div className="text-2xl font-black text-primary">77.3%</div>
               <p className="text-sm text-muted-foreground font-semibold">Avg Team Win Rate</p>
             </div>
             <div className="text-center">
