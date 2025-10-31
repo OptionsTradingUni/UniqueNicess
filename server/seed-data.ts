@@ -133,8 +133,8 @@ export const MANUAL_TESTIMONIALS = [
   },
   {
     name: "Robert A.",
-    testimonial: "Best investment I ever made. The mentors taught me NVDA call options and I've already made $60,630. Worth every penny.",
-    profit: "$60,630",
+    testimonial: "Best investment I ever made. The mentors taught me NVDA call options and I've already made $4,254. Worth every penny.",
+    profit: "$4,254",
     rating: 5,
     date: "2025-05-12",
     photo: "/uploads/mem5.jpeg",
@@ -151,8 +151,8 @@ export const MANUAL_TESTIMONIALS = [
   },
   {
     name: "Daniel R.",
-    testimonial: "I tried learning on my own for years. Joined here, learned MSFT butterfly spreads, and made $2,018 in 2 weeks. Should've joined sooner.",
-    profit: "$2,018",
+    testimonial: "I tried learning on my own for years. Joined here, learned MSFT butterfly spreads, and made $4,666 in 2 weeks. Should've joined sooner.",
+    profit: "$4,666",
     rating: 5,
     date: "2025-03-22",
     photo: "/uploads/mem7.jpeg",
@@ -169,8 +169,8 @@ export const MANUAL_TESTIMONIALS = [
   },
   {
     name: "Anthony S.",
-    testimonial: "Finally found a community that actually teaches. Mastered META vertical spreads and pulled $67,713 last month. Grateful!",
-    profit: "$67,713",
+    testimonial: "Finally found a community that actually teaches. Mastered META vertical spreads and pulled $7,528 last month. Grateful!",
+    profit: "$7,528",
     rating: 5,
     date: "2025-09-08",
     photo: "/uploads/mem9.jpeg",
@@ -178,8 +178,8 @@ export const MANUAL_TESTIMONIALS = [
   },
   {
     name: "Joshua K.",
-    testimonial: "My account grew $24,675 this quarter thanks to AMZN straddles. The training here is legit, not like other gurus.",
-    profit: "$24,675",
+    testimonial: "My account grew $34,002 this quarter thanks to AMZN straddles. The training here is legit, not like other gurus.",
+    profit: "$34,002",
     rating: 5,
     date: "2025-08-25",
     photo: "/uploads/mem10.jpeg",
