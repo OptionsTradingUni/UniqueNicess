@@ -1,0 +1,17 @@
+I'm writing to address a significant display issue when the website is viewed on mobile devices, specifically within in-app browsers (like TikTok and Instagram).
+The site content is being covered up, and elements are overlapping, which is making the site unusable for potential users coming from social media.
+1. Primary Issue: Footer Overlap (Critical)
+The dark copyright footer bar (© 2025 Options Trading University...) is constantly sitting over the main content as the user scrolls, blocking valuable information.
+Action to Take:
+• Inspect Footer CSS: This is strongly indicative of the footer element being set to position: fixed; but without proper compensation for the page's content flow.
+• Recommendation: If the footer must be fixed, please add a large padding-bottom (equal to the footer's height) to the main content container or <body> element. This will create a crucial "buffer zone" to push content up and keep it visible above the fixed bar.
+• Alternative: Consider changing the footer position to position: relative; so it simply sits at the natural end of the page content.
+2. Secondary Issue: Floating Icon Positioning & Visibility
+The goal for the Telegram (Send) and Discord icons is for them to be highly visible, "boastful," and floating over the body content, while being transparent and non-blocking to the content underneath.
+Action to Take:
+• Maintain position: fixed; These elements should keep this property to ensure they float and remain visible as the user scrolls down the page.
+• Adjust Vertical Position: Their top value is currently too high. They need to be positioned clearly below the fixed header/navigation bar. A top value of top: 100px; (or more, if necessary) should be applied specifically via a media query for mobile screens to clear the header and the browser's native UI.
+• Ensure Non-Blocking: Verify the icons are not overlapping or obscuring any text or graphics. If the icons are large, ensure the area beneath them is cleared or that they use a suitable opacity/style to achieve a transparent, non-blocking effect.
+3. General Mobile WebView Testing
+Please ensure that you debug this directly on a mobile device while running within a common WebView environment (e.g., viewing the link from the TikTok app) to correctly replicate and confirm the fix. Standard mobile browser testing often fails to catch these specific in-app conflicts.
+Let me know when this has been reviewed and corrected.
