@@ -198,23 +198,23 @@ export function ContactCTA({ onContactClick }: { onContactClick?: () => void }) 
 
   return (
     <div className="relative w-full overflow-hidden mb-24">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary animate-gradient-shift bg-[length:400%_400%]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/90 dark:from-primary/70 dark:via-primary/60 dark:to-secondary/70" />
       
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.2),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(0,0,0,0))]" />
       
       <div className="relative py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center space-y-6 mb-10">
-            <div className="inline-flex items-center gap-2 bg-white/20 dark:bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full border border-white/30 animate-pulse">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-ping" />
-              <span className="text-white font-bold text-sm">🔥 1,500+ Active Traders Online Now</span>
+            <div className="inline-flex items-center gap-2 bg-white/20 dark:bg-black/20 backdrop-blur-sm px-6 py-2 rounded-full border border-white/30 dark:border-white/20">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <span className="text-white dark:text-white font-bold text-sm">🔥 1,500+ Active Traders Online Now</span>
             </div>
             
-            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight drop-shadow-2xl">
+            <h2 className="text-4xl md:text-6xl font-black text-white dark:text-white leading-tight drop-shadow-2xl">
               Ready to Join the Winners?
             </h2>
             
-            <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto font-semibold leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/95 dark:text-white/90 max-w-3xl mx-auto font-semibold leading-relaxed">
               Get instant access to expert trade alerts, live mentorship, and a community of profitable traders.
             </p>
           </div>
@@ -223,10 +223,9 @@ export function ContactCTA({ onContactClick }: { onContactClick?: () => void }) 
             <Button
               onClick={handleTelegramClick}
               size="lg"
-              className="group relative overflow-hidden bg-white hover:bg-white text-primary font-black px-8 py-8 text-xl shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.5)]"
+              className="group relative overflow-hidden bg-white hover:bg-gray-50 dark:bg-white dark:hover:bg-gray-100 text-primary font-black px-8 py-8 text-xl shadow-2xl transition-all duration-300 hover:scale-105"
               data-testid="cta-telegram-button"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex items-center justify-center gap-3">
                 <Send className="h-7 w-7" />
                 <div className="text-left">
@@ -239,10 +238,9 @@ export function ContactCTA({ onContactClick }: { onContactClick?: () => void }) 
             <Button
               onClick={handleDiscordClick}
               size="lg"
-              className="group relative overflow-hidden bg-[#5865F2] hover:bg-[#4752C4] text-white font-black px-8 py-8 text-xl shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(88,101,242,0.5)]"
+              className="group relative overflow-hidden bg-[#5865F2] hover:bg-[#4752C4] dark:bg-[#5865F2] dark:hover:bg-[#4752C4] text-white font-black px-8 py-8 text-xl shadow-2xl transition-all duration-300 hover:scale-105"
               data-testid="cta-discord-button"
             >
-              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="relative flex items-center justify-center gap-3">
                 <SiDiscord className="h-7 w-7" />
                 <div className="text-left">
@@ -254,31 +252,31 @@ export function ContactCTA({ onContactClick }: { onContactClick?: () => void }) 
           </div>
 
           <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 text-center">
-              <div className="text-3xl font-black text-white mb-1">76%</div>
-              <div className="text-sm text-white/90 font-semibold">Win Rate</div>
+            <div className="bg-white/15 dark:bg-black/25 backdrop-blur-sm rounded-lg p-4 border border-white/25 dark:border-white/15 text-center">
+              <div className="text-3xl font-black text-white dark:text-white mb-1">76%</div>
+              <div className="text-sm text-white/95 dark:text-white/90 font-semibold">Win Rate</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 text-center">
-              <div className="text-3xl font-black text-white mb-1">$8,734</div>
-              <div className="text-sm text-white/90 font-semibold">Avg Profit/Win</div>
+            <div className="bg-white/15 dark:bg-black/25 backdrop-blur-sm rounded-lg p-4 border border-white/25 dark:border-white/15 text-center">
+              <div className="text-3xl font-black text-white dark:text-white mb-1">$8,734</div>
+              <div className="text-sm text-white/95 dark:text-white/90 font-semibold">Avg Profit/Win</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 text-center">
-              <div className="text-3xl font-black text-white mb-1">11+</div>
-              <div className="text-sm text-white/90 font-semibold">Years Experience</div>
+            <div className="bg-white/15 dark:bg-black/25 backdrop-blur-sm rounded-lg p-4 border border-white/25 dark:border-white/15 text-center">
+              <div className="text-3xl font-black text-white dark:text-white mb-1">11+</div>
+              <div className="text-sm text-white/95 dark:text-white/90 font-semibold">Years Experience</div>
             </div>
           </div>
 
           <div className="text-center space-y-3">
-            <div className="flex flex-wrap justify-center gap-3 text-white/95 text-sm md:text-base font-bold">
+            <div className="flex flex-wrap justify-center gap-3 text-white/95 dark:text-white/90 text-sm md:text-base font-bold">
               <span className="flex items-center gap-1">✅ Instant Access</span>
-              <span className="hidden md:inline text-white/50">•</span>
+              <span className="hidden md:inline text-white/50 dark:text-white/40">•</span>
               <span className="flex items-center gap-1">✅ Real-Time Alerts</span>
-              <span className="hidden md:inline text-white/50">•</span>
+              <span className="hidden md:inline text-white/50 dark:text-white/40">•</span>
               <span className="flex items-center gap-1">✅ Expert Mentors</span>
-              <span className="hidden md:inline text-white/50">•</span>
+              <span className="hidden md:inline text-white/50 dark:text-white/40">•</span>
               <span className="flex items-center gap-1">✅ Proven Strategies</span>
             </div>
-            <p className="text-white/90 text-lg font-black animate-pulse">
+            <p className="text-white/95 dark:text-white/90 text-lg font-black">
               ⚡ Our next winning trade could be minutes away!
             </p>
           </div>
