@@ -36,7 +36,7 @@ const mentors = [
       students: "1,500+",
       winRate: "76%",
     },
-    color: "from-primary to-secondary",
+    color: "from-primary to-primary",
   },
   {
     id: 2,
@@ -56,7 +56,7 @@ const mentors = [
       students: "900+",
       winRate: "82%",
     },
-    color: "from-blue-500 to-cyan-600",
+    color: "from-primary to-primary",
   },
   {
     id: 3,
@@ -76,7 +76,7 @@ const mentors = [
       students: "1,200+",
       winRate: "74%",
     },
-    color: "from-purple-500 to-pink-600",
+    color: "from-primary to-primary",
   },
   {
     id: 4,
@@ -96,7 +96,7 @@ const mentors = [
       students: "750+",
       winRate: "78%",
     },
-    color: "from-orange-500 to-red-600",
+    color: "from-primary to-primary",
   },
   {
     id: 5,
@@ -116,7 +116,7 @@ const mentors = [
       students: "800+",
       winRate: "73%",
     },
-    color: "from-indigo-500 to-purple-600",
+    color: "from-primary to-primary",
   },
   {
     id: 6,
@@ -136,7 +136,7 @@ const mentors = [
       students: "650+",
       winRate: "81%",
     },
-    color: "from-teal-500 to-green-600",
+    color: "from-primary to-primary",
   },
   {
     id: 7,
@@ -156,7 +156,7 @@ const mentors = [
       students: "1,100+",
       winRate: "75%",
     },
-    color: "from-green-500 to-emerald-600",
+    color: "from-primary to-primary",
   },
   {
     id: 8,
@@ -176,7 +176,7 @@ const mentors = [
       students: "700+",
       winRate: "83%",
     },
-    color: "from-pink-500 to-rose-600",
+    color: "from-primary to-primary",
   },
   {
     id: 9,
@@ -196,7 +196,7 @@ const mentors = [
       students: "850+",
       winRate: "77%",
     },
-    color: "from-cyan-500 to-blue-600",
+    color: "from-primary to-primary",
   },
   {
     id: 10,
@@ -216,7 +216,7 @@ const mentors = [
       students: "950+",
       winRate: "76%",
     },
-    color: "from-amber-500 to-orange-600",
+    color: "from-primary to-primary",
   },
 ];
 
@@ -358,66 +358,25 @@ export function TeamProfiles({ onContactClick }: { onContactClick?: () => void }
       </div>
 
       {/* Call to Action */}
-      <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/30">
-        <CardContent className="py-12 text-center space-y-6">
+      <Card className="bg-muted/30 border-border">
+        <CardContent className="py-10 text-center space-y-6">
           <div className="space-y-3">
-            <h3 className="text-3xl font-black">Learn Directly From the Experts</h3>
+            <h3 className="text-3xl font-black">Connect With Our Mentors</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Get personalized mentorship, real-time trade alerts, and 24/7 access to our team of professional traders.
+              Get personalized mentorship and real-time trade alerts from professional traders.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8"
+              className="bg-primary hover:bg-primary/90 text-white px-8"
               onClick={onContactClick}
               data-testid="button-contact-mentors"
             >
               <Send className="mr-2 w-5 h-5" />
-              Message a Mentor on Telegram
+              Message a Mentor
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-purple-500 text-purple-600 hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-950 px-8"
-              onClick={() => window.open("https://discord.gg/zruqE5wB", "_blank")}
-              data-testid="button-join-discord"
-            >
-              <SiDiscord className="mr-2 w-5 h-5" />
-              Join Our Discord Community
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-8 border-t border-primary/20">
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <TrendingUp className="w-6 h-6 text-primary" />
-              </div>
-              <div className="text-2xl font-black text-primary">42+ Years</div>
-              <p className="text-sm text-muted-foreground font-semibold">Combined Experience</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <Users className="w-6 h-6 text-primary" />
-              </div>
-              <div className="text-2xl font-black text-primary">9,250+</div>
-              <p className="text-sm text-muted-foreground font-semibold">Students Trained</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <Award className="w-6 h-6 text-primary" />
-              </div>
-              <div className="text-2xl font-black text-primary">76%</div>
-              <p className="text-sm text-muted-foreground font-semibold">Avg Team Win Rate</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <BookOpen className="w-6 h-6 text-primary" />
-              </div>
-              <div className="text-2xl font-black text-primary">100+</div>
-              <p className="text-sm text-muted-foreground font-semibold">Training Videos</p>
-            </div>
           </div>
         </CardContent>
       </Card>

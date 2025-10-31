@@ -13,12 +13,12 @@ interface TradeFeedItem {
 }
 
 const colorPalette = [
-  "from-green-500 to-emerald-600",
-  "from-blue-500 to-cyan-600",
-  "from-purple-500 to-pink-600",
-  "from-orange-500 to-red-600",
-  "from-indigo-500 to-purple-600",
-  "from-teal-500 to-green-600",
+  "from-primary to-primary",
+  "from-primary to-primary",
+  "from-primary to-primary",
+  "from-primary to-primary",
+  "from-primary to-primary",
+  "from-primary to-primary",
 ];
 
 const comparisonData = {
@@ -142,7 +142,7 @@ export function RecentWins() {
       </div>
 
       {/* Before/After Comparison Section */}
-      <div className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 rounded-3xl p-8 md:p-12 border border-primary/20">
+      <div className="bg-muted/30 rounded-3xl p-8 md:p-12 border border-border">
         <div className="text-center mb-10">
           <h3 className="text-3xl md:text-4xl font-black mb-3">
             The Transformation Our Members Experience
@@ -341,49 +341,6 @@ export function RecentWins() {
         </div>
       </div>
 
-      {/* Weekly Performance Chart Visual */}
-      <Card className="border-primary/30">
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle className="text-2xl flex items-center gap-2">
-              <BarChart3 className="w-6 h-6 text-primary" />
-              Community Performance This Week
-            </CardTitle>
-            <Badge className="bg-green-500">
-              <Target className="w-3 h-3 mr-1" />
-              Above Target
-            </Badge>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-7 gap-2 mb-6">
-            {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day, index) => {
-              const heights = [65, 82, 71, 89, 76, 45, 38];
-              const profits = [32400, 48200, 38800, 56500, 42900, 18200, 14100];
-              return (
-                <div key={day} className="text-center" data-testid={`chart-day-${day.toLowerCase()}`}>
-                  <div className="h-32 flex items-end justify-center mb-2">
-                    <div
-                      className="w-full bg-gradient-to-t from-primary to-secondary rounded-t-lg hover:opacity-80 transition-opacity cursor-pointer relative group"
-                      style={{ height: `${heights[index]}%` }}
-                      title={`$${profits[index].toLocaleString()}`}
-                    >
-                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                        ${profits[index].toLocaleString()}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-xs font-semibold text-muted-foreground">{day}</p>
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex items-center justify-between text-sm text-muted-foreground border-t pt-4">
-            <span className="font-semibold">Weekly Total Profits:</span>
-            <span className="text-2xl font-black text-primary">$251,100</span>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }
