@@ -118,17 +118,17 @@ function App() {
               <AppSidebar />
               <div className="flex flex-col flex-1 overflow-hidden">
                 <header className="flex items-center justify-between px-4 py-5 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2 md:gap-4 flex-1 justify-between md:justify-start">
                     <SidebarTrigger data-testid="button-sidebar-toggle" className="hover-elevate active-elevate-2 h-14 w-14 text-xl" />
-                    <h2 className="text-lg md:text-xl font-bold text-foreground dark:text-foreground hidden sm:block" data-testid="text-site-title">
+                    <h2 className="text-base md:text-xl font-bold text-foreground dark:text-foreground text-center flex-1 md:flex-initial" data-testid="text-site-title">
                       Options Trading University
                     </h2>
-                  </div>
-                  <div className="flex items-center gap-3">
                     <ThemeToggle />
+                  </div>
+                  <div className="flex items-center">
                     <Button
                       variant="default"
-                      className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity hidden md:flex"
+                      className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity hidden md:flex ml-3"
                       data-testid="button-message-mentor"
                       onClick={handleMessageMentorClick}
                     >
