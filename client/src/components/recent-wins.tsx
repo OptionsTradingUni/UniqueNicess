@@ -23,7 +23,7 @@ const colorPalette = [
 
 const comparisonData = {
   before: {
-    avgMonthly: 3650,
+    avgMonthly: 1450,
     winRate: 38,
     emotionalTrading: 85,
     strategyKnowledge: 25,
