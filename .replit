@@ -68,3 +68,8 @@ waitForPort = 5000
 [agent]
 integrations = ["javascript_database:1.0.0"]
 expertMode = true
+
+[userenv]
+
+[userenv.development]
+DATABASE_URL = "postgresql://neondb_owner:npg_DBvVptGsU0O3@ep-proud-tree-aeksbsuv.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require"

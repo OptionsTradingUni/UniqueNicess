@@ -3,111 +3,111 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://yourdomain.com/</loc>
+    <loc>https://optionstradinguni.online/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Main Pages -->
   <url>
-    <loc>https://yourdomain.com/testimonials</loc>
+    <loc>https://optionstradinguni.online/testimonials</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/modules</loc>
+    <loc>https://optionstradinguni.online/modules</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/videos</loc>
+    <loc>https://optionstradinguni.online/videos</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/watchlist</loc>
+    <loc>https://optionstradinguni.online/watchlist</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/glossary</loc>
+    <loc>https://optionstradinguni.online/glossary</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/tools</loc>
+    <loc>https://optionstradinguni.online/tools</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/blog</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://optionstradinguni.online/blog</loc>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/faq</loc>
+    <loc>https://optionstradinguni.online/faq</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/contact</loc>
+    <loc>https://optionstradinguni.online/contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
-  <!-- Blog Posts - Update IDs based on your actual blog post database -->
+  <!-- Blog Posts -->
   <url>
-    <loc>https://yourdomain.com/blog/17</loc>
+    <loc>https://optionstradinguni.online/blog/1</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/blog/18</loc>
+    <loc>https://optionstradinguni.online/blog/2</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/blog/19</loc>
+    <loc>https://optionstradinguni.online/blog/3</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/blog/20</loc>
+    <loc>https://optionstradinguni.online/blog/4</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/blog/21</loc>
+    <loc>https://optionstradinguni.online/blog/5</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/blog/22</loc>
+    <loc>https://optionstradinguni.online/blog/6</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/blog/23</loc>
+    <loc>https://optionstradinguni.online/blog/7</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yourdomain.com/blog/24</loc>
+    <loc>https://optionstradinguni.online/blog/8</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
