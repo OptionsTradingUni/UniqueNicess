@@ -64,7 +64,7 @@ export function ContactFloatingButtons() {
         <Button
           onClick={handleTelegramClick}
           size="icon"
-          className="h-12 w-12 md:h-11 md:w-11 rounded-full shadow-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 hover:scale-105 opacity-90 hover:opacity-100 group"
+          className="h-12 w-12 md:h-11 md:w-11 rounded-full shadow-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 hover:scale-105 opacity-50 hover:opacity-70 group"
           data-testid="floating-telegram-button"
           title="Message on Telegram"
         >
@@ -74,7 +74,7 @@ export function ContactFloatingButtons() {
         <Button
           onClick={handleDiscordClick}
           size="icon"
-          className="h-12 w-12 md:h-11 md:w-11 rounded-full shadow-lg bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800 transition-all duration-300 hover:scale-105 opacity-90 hover:opacity-100 group"
+          className="h-12 w-12 md:h-11 md:w-11 rounded-full shadow-lg bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800 transition-all duration-300 hover:scale-105 opacity-50 hover:opacity-70 group"
           data-testid="floating-discord-button"
           title="Join Discord Community"
         >

@@ -136,10 +136,8 @@ function App() {
                     </Button>
                   </div>
                 </header>
-                <main className="flex-1 overflow-y-auto bg-background pb-20 pr-0 md:pr-0">
-                  <div className="pr-14 md:pr-0">
-                    <Router />
-                  </div>
+                <main className="flex-1 overflow-y-auto bg-background pb-20">
+                  <Router />
                 </main>
                 <footer className="py-4 px-6 border-t border-border bg-sidebar text-sidebar-foreground text-center text-sm relative z-10">
                   <p>© 2025 Options Trading University. All rights reserved.</p>
