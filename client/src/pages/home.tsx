@@ -109,7 +109,7 @@ export default function Home() {
         
         <div className="relative max-w-4xl mx-auto text-center space-y-8">
           <Badge variant="outline" className="text-sm font-semibold px-4 py-1.5 border-primary/50" data-testid="badge-member-count">
-            ⚡ Join 1,500+ Successful Traders
+            ⚡ Join 1,500+ Traders
           </Badge>
           
           <h1 className="text-5xl md:text-7xl font-black leading-tight">

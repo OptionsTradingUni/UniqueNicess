@@ -44,8 +44,8 @@ export async function seedDatabase() {
       successRate: 89,
     });
 
-    // Insert 100 realistic testimonials with unique names, dates, and ratings
-    const testimonials = Array.from({ length: 100 }, (_, i) => generateRandomTestimonial(i));
+    // Insert 20 realistic testimonials with unique names, dates, and ratings
+    const testimonials = Array.from({ length: 20 }, (_, i) => generateRandomTestimonial(i));
     await db.insert(schema.testimonials).values(testimonials);
 
     // Insert expanded watchlist (20 stocks)
@@ -257,7 +257,7 @@ export async function seedDatabase() {
       { term: "Assignment", definition: "When an option seller is required to fulfill their obligation (sell stock for calls, buy stock for puts)." },
     ]);
 
-    console.log("Database seeded successfully with 100 unique testimonials and expanded watchlist!");
+    console.log("Database seeded successfully with 20 unique testimonials and expanded watchlist!");
   } catch (error) {
     console.error("Error seeding database:", error);
   }

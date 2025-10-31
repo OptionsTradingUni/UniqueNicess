@@ -114,9 +114,9 @@ function App() {
         <TooltipProvider>
           <PageTracker />
           <SidebarProvider style={style as React.CSSProperties}>
-            <div className="flex h-screen w-full">
+            <div className="flex min-h-screen w-full bg-background">
               <AppSidebar />
-              <div className="flex flex-col flex-1 overflow-hidden">
+              <div className="flex flex-col flex-1 min-h-screen">
                 <header className="flex items-center justify-between px-4 py-5 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
                   <div className="flex items-center gap-2 md:gap-4 flex-1 justify-between md:justify-start">
                     <SidebarTrigger data-testid="button-sidebar-toggle" className="hover-elevate active-elevate-2 h-14 w-14 text-xl" />
@@ -136,10 +136,10 @@ function App() {
                     </Button>
                   </div>
                 </header>
-                <main className="flex-1 overflow-y-auto bg-background">
+                <main className="flex-1 bg-background">
                   <Router />
                 </main>
-                <footer className="py-4 px-6 border-t border-border bg-sidebar text-sidebar-foreground text-center text-sm">
+                <footer className="py-4 px-6 border-t border-border bg-background text-foreground text-center text-sm mt-auto">
                   <p>© 2025 Options Trading University. All rights reserved.</p>
                 </footer>
               </div>
