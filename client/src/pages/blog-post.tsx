@@ -51,7 +51,41 @@ export default function BlogPostPage() {
       }
       ogDescription.content = post.excerpt;
 
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "description": post.excerpt,
+        "author": {
+          "@type": "Person",
+          "name": post.author
+        },
+        "datePublished": post.date,
+        "publisher": {
+          "@type": "Organization",
+          "name": "Options Trading University",
+          "logo": {
+            "@type": "ImageObject",
+            "url": window.location.origin + "/favicon.ico"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": window.location.href
+        }
+      };
+      
+      const schemaScript = document.createElement('script');
+      schemaScript.type = 'application/ld+json';
+      schemaScript.setAttribute('data-blog-post-schema', 'true');
+      schemaScript.textContent = JSON.stringify(schema);
+      document.head.appendChild(schemaScript);
+
       return () => {
+        const blogSchema = document.querySelector('script[data-blog-post-schema="true"]');
+        if (blogSchema && blogSchema.parentNode) {
+          blogSchema.remove();
+        }
         document.title = previousTitle;
         if (metaDescription && previousDescription) {
           metaDescription.setAttribute("content", previousDescription);
