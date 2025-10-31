@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useLocation, Link } from "wouter";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, TrendingUp, ArrowLeft, Share2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { marked } from "marked";
 import type { BlogPost } from "@shared/schema";
 
 export default function BlogPostPage() {
@@ -19,6 +20,19 @@ export default function BlogPostPage() {
   });
 
   const post = posts?.find((p) => p.id === postId);
+
+  // Convert markdown content to HTML with proper spacing
+  const htmlContent = useMemo(() => {
+    if (!post?.content) return "";
+    
+    // Configure marked for better formatting
+    marked.setOptions({
+      breaks: true,
+      gfm: true,
+    });
+    
+    return marked.parse(post.content);
+  }, [post?.content]);
 
   useEffect(() => {
     if (post) {
@@ -220,17 +234,18 @@ export default function BlogPostPage() {
             <div 
               className="prose prose-lg dark:prose-invert max-w-none
                 prose-headings:font-bold prose-headings:text-foreground
-                prose-h2:text-3xl prose-h2:mt-8 prose-h2:mb-4
-                prose-h3:text-2xl prose-h3:mt-6 prose-h3:mb-3
-                prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-4
+                prose-h1:text-4xl prose-h1:mt-10 prose-h1:mb-6
+                prose-h2:text-3xl prose-h2:mt-10 prose-h2:mb-5
+                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+                prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
                 prose-strong:text-foreground prose-strong:font-bold
-                prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
-                prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
-                prose-li:text-muted-foreground prose-li:mb-2
+                prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6 prose-ul:space-y-2
+                prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6 prose-ol:space-y-2
+                prose-li:text-muted-foreground prose-li:mb-3 prose-li:leading-relaxed prose-li:text-lg
                 prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                 prose-code:text-primary prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded
-                prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+                prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-6"
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
               data-testid="content-post"
             />
           </CardContent>
