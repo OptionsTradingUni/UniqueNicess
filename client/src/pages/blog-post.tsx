@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, TrendingUp, ArrowLeft, Share2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
 import type { BlogPost } from "@shared/schema";
 
 export default function BlogPostPage() {
@@ -21,7 +22,7 @@ export default function BlogPostPage() {
 
   const post = posts?.find((p) => p.id === postId);
 
-  // Convert markdown content to HTML with proper spacing
+  // Convert markdown content to HTML with proper spacing and sanitization
   const htmlContent = useMemo(() => {
     if (!post?.content) return "";
     
@@ -31,7 +32,9 @@ export default function BlogPostPage() {
       gfm: true,
     });
     
-    return marked.parse(post.content);
+    // Sanitize HTML to prevent XSS attacks
+    const rawHtml = marked.parse(post.content) as string;
+    return DOMPurify.sanitize(rawHtml);
   }, [post?.content]);
 
   useEffect(() => {
