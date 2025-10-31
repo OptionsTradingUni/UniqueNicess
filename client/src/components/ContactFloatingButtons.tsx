@@ -60,25 +60,25 @@ export function ContactFloatingButtons() {
 
   return (
     <>
-      <div className="fixed bottom-24 right-4 md:right-6 z-40 flex flex-row md:flex-col gap-2">
+      <div className="fixed top-[140px] md:top-24 md:bottom-auto md:right-6 right-3 z-40 flex flex-col gap-2 pointer-events-auto">
         <Button
           onClick={handleTelegramClick}
           size="icon"
-          className="h-10 w-10 md:h-11 md:w-11 rounded-full shadow-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 hover:scale-105 opacity-90 hover:opacity-100 group"
+          className="h-12 w-12 md:h-11 md:w-11 rounded-full shadow-lg bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 hover:scale-105 opacity-90 hover:opacity-100 group"
           data-testid="floating-telegram-button"
           title="Message on Telegram"
         >
-          <Send className="h-4 w-4 md:h-5 md:w-5 text-white" />
+          <Send className="h-5 w-5 md:h-5 md:w-5 text-white" />
         </Button>
         
         <Button
           onClick={handleDiscordClick}
           size="icon"
-          className="h-10 w-10 md:h-11 md:w-11 rounded-full shadow-lg bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800 transition-all duration-300 hover:scale-105 opacity-90 hover:opacity-100 group"
+          className="h-12 w-12 md:h-11 md:w-11 rounded-full shadow-lg bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 dark:from-indigo-600 dark:to-purple-700 dark:hover:from-indigo-700 dark:hover:to-purple-800 transition-all duration-300 hover:scale-105 opacity-90 hover:opacity-100 group"
           data-testid="floating-discord-button"
           title="Join Discord Community"
         >
-          <SiDiscord className="h-4 w-4 md:h-5 md:w-5 text-white" />
+          <SiDiscord className="h-5 w-5 md:h-5 md:w-5 text-white" />
         </Button>
       </div>
 
