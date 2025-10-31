@@ -401,10 +401,13 @@
 }
 
 .prose ul li {
-  margin-bottom: 1.25rem;
-  line-height: 2;
+  display: block;
+  margin-bottom: 1.5rem;
+  line-height: 2.2;
   position: relative;
   padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .prose ul li::before {
@@ -423,7 +426,10 @@
 }
 
 .prose ul ul li {
-  margin-bottom: 0.75rem;
+  display: block;
+  margin-bottom: 1rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
   font-size: 0.95em;
 }
 
