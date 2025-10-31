@@ -170,14 +170,14 @@ export default function Testimonials() {
           </div>
         )}
 
-        {/* Grid of All Testimonials */}
+        {/* Grid of Remaining Testimonials (without photos) */}
         <div className="pt-8 border-t border-border">
           <h2 className="text-3xl font-black mb-8 text-center">More Member Feedback</h2>
           <p className="text-center text-muted-foreground mb-8 text-lg">
             Join over 1,500+ traders who are consistently profitable
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {allTestimonials?.map((testimonial, index) => (
+            {allTestimonials?.slice(10).map((testimonial, index) => (
               <Card
                 key={testimonial.id}
                 className={`border-card-border hover-elevate cursor-pointer transition-all ${
