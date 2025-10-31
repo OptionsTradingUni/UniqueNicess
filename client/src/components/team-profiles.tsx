@@ -394,7 +394,7 @@ export function TeamProfiles({ onContactClick }: { onContactClick?: () => void }
               <div className="flex items-center justify-center mb-2">
                 <TrendingUp className="w-6 h-6 text-primary" />
               </div>
-              <div className="text-2xl font-black text-primary">93+ Years</div>
+              <div className="text-2xl font-black text-primary">42+ Years</div>
               <p className="text-sm text-muted-foreground font-semibold">Combined Experience</p>
             </div>
             <div className="text-center">
@@ -408,7 +408,7 @@ export function TeamProfiles({ onContactClick }: { onContactClick?: () => void }
               <div className="flex items-center justify-center mb-2">
                 <Award className="w-6 h-6 text-primary" />
               </div>
-              <div className="text-2xl font-black text-primary">77.3%</div>
+              <div className="text-2xl font-black text-primary">76%</div>
               <p className="text-sm text-muted-foreground font-semibold">Avg Team Win Rate</p>
             </div>
             <div className="text-center">

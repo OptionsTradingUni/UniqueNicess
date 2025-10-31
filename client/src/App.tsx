@@ -29,6 +29,7 @@ import Videos from "@/pages/videos";
 import Tools from "@/pages/tools";
 import FAQ from "@/pages/faq";
 import Blog from "@/pages/blog";
+import BlogPost from "@/pages/blog-post";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import NotFound from "@/pages/not-found";
@@ -44,6 +45,7 @@ function Router() {
       <Route path="/videos" component={Videos} />
       <Route path="/tools" component={Tools} />
       <Route path="/blog" component={Blog} />
+      <Route path="/blog/:id" component={BlogPost} />
       <Route path="/faq" component={FAQ} />
       <Route path="/contact" component={Contact} />
       <Route path="/terms" component={Terms} />
