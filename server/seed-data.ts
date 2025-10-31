@@ -109,7 +109,7 @@ export const MANUAL_TESTIMONIALS = [
     testimonial: "Started with zero experience. Three months later, I'm consistently profitable with AAPL covered calls. Made $12,310 last week alone!",
     profit: "$12,310",
     rating: 5,
-    date: "2025-07-20",
+    date: "2025-10-29",
     photo: "/uploads/mem2.jpeg",
     profitImage: "/uploads/pro2.jpeg",
   },
