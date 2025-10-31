@@ -209,27 +209,219 @@ export async function seedDatabase() {
     await db.insert(schema.modules).values([
       {
         title: "Introduction to Options",
-        content: "Learn what options are, how they work, and why they're powerful trading instruments. Understand calls, puts, and basic contract mechanics.",
+        content: `## What Are Options?
+
+Options are financial contracts that give you the **right**, but not the **obligation**, to buy or sell an underlying asset at a predetermined price (**strike price**) before a specific date (**expiration date**).
+
+### Key Concepts
+
+• **Call Options**: Give you the right to BUY the underlying asset
+  - Use when you expect the price to rise
+  - **Risk**: Limited to the premium paid
+  - **Example**: Buy a $100 call on stock trading at $95
+
+• **Put Options**: Give you the right to SELL the underlying asset
+  - Use when you expect the price to fall
+  - **Risk**: Limited to the premium paid
+  - **Example**: Buy a $100 put on stock trading at $105
+
+• **Premium**: The price you pay for the option contract
+  - This is the maximum loss for option buyers
+  - Determined by intrinsic and extrinsic value
+
+### Why Trade Options?
+
+• **Leverage**: Control 100 shares with one contract for a fraction of the cost
+• **Flexibility**: Profit from up, down, or sideways markets
+• **Income Generation**: Sell options to collect premium income
+• **Risk Management**: Hedge existing positions against losses`,
       },
       {
         title: "Options Greeks Mastery",
-        content: "Master Delta, Gamma, Theta, Vega, and Rho. Understand how these metrics affect your positions and how to use them for better decisions.",
+        content: `## Understanding the Greeks
+
+The **Greeks** are risk metrics that measure how an option's price responds to various market factors. Mastering these is essential for successful options trading.
+
+### Delta (Δ)
+
+• Measures the rate of change in option price per $1 move in the underlying
+  - **Call Delta**: Ranges from 0 to 1 (or 0% to 100%)
+  - **Put Delta**: Ranges from -1 to 0 (or -100% to 0%)
+  - **Example**: A call with 0.50 delta gains $0.50 when stock rises $1
+
+• **Position Delta** tells you your directional exposure
+  - **Positive delta**: Profits when stock rises
+  - **Negative delta**: Profits when stock falls
+  - **Delta-neutral**: Minimally affected by small price moves
+
+### Gamma (Γ)
+
+• Measures the rate of change of **Delta**
+  - Shows how much delta will change per $1 move in stock
+  - **High gamma**: Delta changes rapidly (near ATM options)
+  - **Low gamma**: Delta changes slowly (deep ITM/OTM options)
+
+### Theta (Θ)
+
+• Measures **time decay** - how much value the option loses per day
+  - Always negative for long options
+  - Accelerates as expiration approaches
+  - **Risk**: Options lose value even if the stock doesn't move
+  - **Example**: -0.05 theta means losing $5/day per contract
+
+### Vega (ν)
+
+• Measures sensitivity to changes in **implied volatility**
+  - **High vega**: Option price very sensitive to IV changes
+  - Longer-dated options have higher vega
+  - **Example**: Vega of 0.10 means $10 gain per 1% IV increase`,
       },
       {
         title: "Basic Strategy Guide",
-        content: "Learn covered calls, cash-secured puts, and protective puts. Build a foundation with these beginner-friendly strategies.",
+        content: `## Foundational Options Strategies
+
+Start with these time-tested strategies that offer controlled risk and clear profit potential.
+
+### Covered Call
+
+Sell call options against stock you already own to generate income.
+
+• **When to use**: Neutral to slightly bullish outlook
+• **Maximum profit**: Premium received + stock gains up to strike
+• **Risk**: Missing out on gains above strike price
+• **Example**: Own 100 shares at $50, sell $55 call for $2 premium
+
+### Cash-Secured Put
+
+Sell put options while holding cash to buy the stock if assigned.
+
+• **When to use**: Want to buy stock at a lower price
+• **Capital requirement**: Must have cash equal to strike × 100
+• **Income strategy**: Collect premium while waiting to buy
+• **Risk**: Required to buy stock at strike if price drops
+• **Example**: Sell $45 put on $50 stock, collect $2 premium
+
+### Protective Put
+
+Buy put options to protect long stock positions from downside risk.
+
+• **When to use**: Own stock but worried about short-term decline
+• **Maximum loss**: Limited to strike price minus stock price
+• **Cost**: Premium paid reduces overall profit
+• **Example**: Own stock at $50, buy $48 put for downside protection`,
       },
       {
         title: "Spread Strategies",
-        content: "Vertical spreads, horizontal spreads, and diagonal spreads explained. Reduce risk while maintaining profit potential.",
+        content: `## Spread Strategies for Risk Management
+
+Spreads combine multiple options to reduce cost and define risk clearly.
+
+### Vertical Spreads
+
+Buy and sell options of the same type with different strike prices.
+
+**Bull Call Spread**
+• Buy lower strike call, sell higher strike call
+• **Maximum profit**: Difference in strikes minus premium paid
+• **Maximum loss**: Premium paid
+• **Risk**: Limited on both sides
+• **Example**: Buy $50 call, sell $55 call
+
+**Bear Put Spread**
+• Buy higher strike put, sell lower strike put
+• Profits from downward movement
+• **Maximum profit**: Difference in strikes minus premium paid
+• **Risk**: Limited to premium paid
+
+### Calendar Spreads (Horizontal)
+
+• Sell near-term option, buy longer-term option at same strike
+• Profits from **time decay** differences
+• **When to use**: Expect low volatility short-term
+• **Risk**: Increases if underlying moves significantly
+
+### Diagonal Spreads
+
+• Combines vertical and calendar spread concepts
+• Different strikes AND different expirations
+• More flexible for adjusting to market conditions
+• **Advanced strategy**: Requires active management`,
       },
       {
         title: "Advanced Multi-Leg Strategies",
-        content: "Iron condors, butterflies, and ratio spreads. Complex strategies for experienced traders seeking consistent income.",
+        content: `## Complex Strategies for Consistent Income
+
+These advanced strategies offer defined risk/reward profiles for experienced traders.
+
+### Iron Condor
+
+Combines a **bear call spread** and a **bull put spread** to profit from low volatility.
+
+• **Structure**: Sell OTM call + put, buy further OTM call + put
+• **Maximum profit**: Total premium collected
+• **Maximum loss**: Difference in strikes minus premium
+• **When to use**: Expect the stock to stay within a range
+• **Risk**: Losses if stock breaks out of the range
+• **Example**: Sell $55 call and $45 put, buy $60 call and $40 put
+
+### Butterfly Spread
+
+Three strike prices with equal spacing to profit from minimal movement.
+
+• **Structure**: Buy 1 ITM, sell 2 ATM, buy 1 OTM
+• **Maximum profit**: At center strike at expiration
+• **Risk**: Limited to premium paid
+• **When to use**: Very low volatility expected
+
+### Ratio Spreads
+
+Unequal number of long and short options for asymmetric risk/reward.
+
+• **Call Ratio Spread**: Buy 1 call, sell 2+ higher strike calls
+• Profits if stock rises moderately
+• **Risk**: Unlimited if stock rises too much
+• **Advanced technique**: Requires careful position sizing`,
       },
       {
         title: "Risk Management Essentials",
-        content: "Position sizing, stop losses, and portfolio management. Protect your capital and stay in the game long-term.",
+        content: `## Protecting Your Capital
+
+Proper risk management separates successful traders from the rest.
+
+### Position Sizing Rules
+
+• **Never risk more than 2-5% of capital on a single trade**
+• Determine position size based on your account size
+• **Example**: $10,000 account → Max $500 risk per trade
+• Scale into positions gradually
+
+### Stop Loss Strategies
+
+• **Percentage-based**: Exit at 20-50% loss on premium
+• **Time-based**: Close positions at certain days to expiration
+• **Technical levels**: Use support/resistance as exit points
+• **Risk**: Avoid letting small losses become large ones
+
+### Portfolio Management
+
+• **Diversification**: Don't put all capital in one strategy
+• **Delta management**: Monitor total portfolio delta
+• **Theta optimization**: Balance short-term vs long-term positions
+• **Correlation awareness**: Avoid multiple positions on correlated stocks
+
+### Common Mistakes to Avoid
+
+• **Overleveraging**: Using too much capital on high-risk trades
+• **Ignoring Greeks**: Not understanding your position's sensitivities
+• **Revenge trading**: Trying to recover losses with bigger bets
+• **No exit plan**: Always know when to take profits or cut losses
+
+### Professional Tips
+
+• Keep a **trading journal** to track and learn from every trade
+• Review positions daily and adjust as needed
+• Set profit targets before entering trades
+• **Risk-reward ratio**: Aim for at least 1:2 ratio`,
       },
     ]);
 
