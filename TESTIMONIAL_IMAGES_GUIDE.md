@@ -52,19 +52,42 @@ Upload these to `public/uploads/`:
 
 **Testimonials 11-100:** No images (text only)
 
-## Steps to Add Images
+## Steps to Add Images & Edit Details
 
-1. Upload all 20 images (10 member photos + 10 profit screenshots) to **`public/uploads/`** folder
-2. Name them **exactly** as shown above
-3. The images will automatically appear on the testimonials page
+### Step 1: Edit the Testimonial Details
+Open **`server/seed-data.ts`** and find the `MANUAL_TESTIMONIALS` array (starting around line 97).
+
+Edit each testimonial to match your profit screenshots:
+- **name**: Change to the member's name
+- **testimonial**: Edit the testimonial text
+- **profit**: **IMPORTANT** - Change this to match what's shown in your profit screenshot
+- **rating**: 3-5 stars
+- **date**: YYYY-MM-DD format
+
+Example:
+```javascript
+{
+  name: "Marcus J.",
+  testimonial: "Made $2,847 in my first month trading SPY calls!",
+  profit: "$2,847",  // ← EDIT THIS TO MATCH YOUR SCREENSHOT
+  rating: 5,
+  date: "2024-01-15",
+  photo: "/uploads/member-1.jpg",
+  profitImage: "/uploads/profit-1.jpg",
+}
+```
+
+### Step 2: Upload Your Images
+Upload all 20 images to **`public/uploads/`** folder with these exact names:
+- `member-1.jpg` through `member-10.jpg`
+- `profit-1.jpg` through `profit-10.jpg`
+
+### Step 3: Restart
+After editing and uploading images, the changes will appear automatically.
 
 ## Image Recommendations
 
 - **Face photos:** Square format, clear headshots, professional or casual (mainly male as you mentioned)
-- **Profit screenshots:** Trading platform screenshots showing gains that match each testimonial's profit amount
+- **Profit screenshots:** Trading platform screenshots showing gains that **match the profit amount in the testimonial**
 - **Format:** JPG or PNG
 - **Size:** Recommend 500x500px for member photos, any size for profit screenshots
-
-## Manual Editing
-
-The code is in **`server/seed-data.ts`** (lines 117-127) if you need to customize anything.

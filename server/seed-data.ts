@@ -93,6 +93,100 @@ export const TESTIMONIAL_TEMPLATES = [
 
 export const STAR_RATINGS = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3]; // 70% 5-star, 22% 4-star, 8% 3-star
 
+// MANUALLY EDIT THESE 10 TESTIMONIALS TO MATCH YOUR PROFIT SCREENSHOTS
+export const MANUAL_TESTIMONIALS = [
+  {
+    name: "Marcus J.",
+    testimonial: "I was skeptical at first, but after learning SPY call spreads, I made $2,847 in my first month. The training modules are crystal clear.",
+    profit: "$2,847",
+    rating: 5,
+    date: "2024-01-15",
+    photo: "/uploads/member-1.jpg",
+    profitImage: "/uploads/profit-1.jpg",
+  },
+  {
+    name: "David M.",
+    testimonial: "Started with zero experience. Three months later, I'm consistently profitable with AAPL covered calls. Made $5,234 last week alone!",
+    profit: "$5,234",
+    rating: 5,
+    date: "2024-02-20",
+    photo: "/uploads/member-2.jpg",
+    profitImage: "/uploads/profit-2.jpg",
+  },
+  {
+    name: "Michael T.",
+    testimonial: "The community here is incredible. Someone recommended TSLA put credit spreads and I pulled $8,456 from that single play. Life changing.",
+    profit: "$8,456",
+    rating: 5,
+    date: "2024-03-10",
+    photo: "/uploads/member-3.jpg",
+    profitImage: "/uploads/profit-3.jpg",
+  },
+  {
+    name: "James W.",
+    testimonial: "I used to lose money trading randomly. Now I understand QQQ iron condors and made $12,340 this month. Finally profitable!",
+    profit: "$12,340",
+    rating: 5,
+    date: "2024-04-05",
+    photo: "/uploads/member-4.jpg",
+    profitImage: "/uploads/profit-4.jpg",
+  },
+  {
+    name: "Robert A.",
+    testimonial: "Best investment I ever made. The mentors taught me NVDA call options and I've already made $15,890. Worth every penny.",
+    profit: "$15,890",
+    rating: 5,
+    date: "2024-05-12",
+    photo: "/uploads/member-5.jpg",
+    profitImage: "/uploads/profit-5.jpg",
+  },
+  {
+    name: "Christopher H.",
+    testimonial: "Went from complete beginner to making $6,789 using AMD puts. The step-by-step guidance made all the difference.",
+    profit: "$6,789",
+    rating: 5,
+    date: "2024-06-18",
+    photo: "/uploads/member-6.jpg",
+    profitImage: "/uploads/profit-6.jpg",
+  },
+  {
+    name: "Daniel R.",
+    testimonial: "I tried learning on my own for years. Joined here, learned MSFT butterfly spreads, and made $18,234 in 2 weeks. Should've joined sooner.",
+    profit: "$18,234",
+    rating: 5,
+    date: "2024-07-22",
+    photo: "/uploads/member-7.jpg",
+    profitImage: "/uploads/profit-7.jpg",
+  },
+  {
+    name: "Matthew L.",
+    testimonial: "The weekly live sessions are gold. Applied what I learned about SPY 0DTE options and banked $4,521. Still can't believe it.",
+    profit: "$4,521",
+    rating: 5,
+    date: "2024-08-14",
+    photo: "/uploads/member-8.jpg",
+    profitImage: "/uploads/profit-8.jpg",
+  },
+  {
+    name: "Anthony S.",
+    testimonial: "Finally found a community that actually teaches. Mastered META vertical spreads and pulled $11,567 last month. Grateful!",
+    profit: "$11,567",
+    rating: 5,
+    date: "2024-09-08",
+    photo: "/uploads/member-9.jpg",
+    profitImage: "/uploads/profit-9.jpg",
+  },
+  {
+    name: "Joshua K.",
+    testimonial: "My account grew $9,876 this quarter thanks to AMZN straddles. The training here is legit, not like other gurus.",
+    profit: "$9,876",
+    rating: 5,
+    date: "2024-10-03",
+    photo: "/uploads/member-10.jpg",
+    profitImage: "/uploads/profit-10.jpg",
+  },
+];
+
 // Generate realistic dates from the past 12 months
 export function generateRealisticDate(): string {
   const now = new Date();
@@ -102,6 +196,12 @@ export function generateRealisticDate(): string {
 }
 
 export function generateRandomTestimonial(index: number) {
+  // For the first 10 testimonials, use the manually edited ones
+  if (index < 10) {
+    return MANUAL_TESTIMONIALS[index];
+  }
+  
+  // For testimonials 11-100, generate random ones
   const firstName = FIRST_NAMES[index % FIRST_NAMES.length];
   const lastName = LAST_NAMES[Math.floor(Math.random() * LAST_NAMES.length)];
   const name = `${firstName} ${lastName.charAt(0)}.`;
@@ -114,27 +214,14 @@ export function generateRandomTestimonial(index: number) {
   const rating = STAR_RATINGS[Math.floor(Math.random() * STAR_RATINGS.length)];
   const date = generateRealisticDate();
   
-  // Add images to first 10 testimonials
-  // All 10 get BOTH face photos AND profit screenshots
-  let photo = null;
-  let profitImage = null;
-  
-  if (index < 10) {
-    // Each testimonial gets its own unique member photo (1-10)
-    photo = `/uploads/member-${index + 1}.jpg`;
-    
-    // Each testimonial gets its own unique profit screenshot (1-10)
-    profitImage = `/uploads/profit-${index + 1}.jpg`;
-  }
-  
   return {
     name,
     testimonial,
     profit,
     rating,
     date,
-    photo,
-    profitImage,
+    photo: null,
+    profitImage: null,
   };
 }
 
