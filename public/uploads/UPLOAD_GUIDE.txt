@@ -1,0 +1,49 @@
+╔══════════════════════════════════════════════════════════════╗
+║   TESTIMONIAL IMAGES - SIMPLE UPLOAD GUIDE                   ║
+╚══════════════════════════════════════════════════════════════╝
+
+📁 LOCATION: You are here! → public/uploads/
+
+📸 UPLOAD THESE 20 IMAGE FILES:
+
+MEMBER PHOTOS (10 files - male faces only):
+  ✓ mem1.jpg
+  ✓ mem2.jpg
+  ✓ mem3.jpg
+  ✓ mem4.jpg
+  ✓ mem5.jpg
+  ✓ mem6.jpg
+  ✓ mem7.jpg
+  ✓ mem8.jpg
+  ✓ mem9.jpg
+  ✓ mem10.jpg
+
+PROFIT SCREENSHOTS (10 files):
+  ✓ pro1.jpg
+  ✓ pro2.jpg
+  ✓ pro3.jpg
+  ✓ pro4.jpg
+  ✓ pro5.jpg
+  ✓ pro6.jpg
+  ✓ pro7.jpg
+  ✓ pro8.jpg
+  ✓ pro9.jpg
+  ✓ pro10.jpg
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 TO EDIT TESTIMONIAL TEXT:
+
+1. Open file: server/seed-data.ts
+2. Go to line 100
+3. Look for: MANUAL_TESTIMONIALS
+4. Edit names, testimonials, and profit amounts to match your screenshots
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ WHAT HAPPENS:
+- BEFORE upload: Placeholder shows with upload reminder
+- AFTER upload: Your real images appear automatically!
+
+No database needed, no code changes needed!
+Just upload the 20 JPG files here and you're done! 🚀
