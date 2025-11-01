@@ -3,7 +3,8 @@ import { drizzle } from 'drizzle-orm/neon-serverless';
 import { sql } from 'drizzle-orm';
 import ws from 'ws';
 import * as schema from "@shared/schema";
-import { generateRandomTestimonial, EXPANDED_WATCHLIST } from "./seed-data";
+// 💥 CHANGED: Added MANUAL_TESTIMONIALS to the import
+import { generateRandomTestimonial, EXPANDED_WATCHLIST, MANUAL_TESTIMONIALS } from "./seed-data";
 
 // Configure WebSocket for Neon database connection
 // In development (Replit workspace): use ws library
@@ -26,7 +27,7 @@ export const db = drizzle({ client: pool, schema });
 // Seed the database with realistic initial data
 export async function seedDatabase() {
   try {
-    // 💥 3. ADDED THIS LINE TO DELETE DUPLICATES BEFORE SEEDING
+    // This is good! Keep it here to clean up any old duplicates.
     await deleteDuplicateTestimonials();
 
     // Check if already seeded
@@ -48,9 +49,27 @@ export async function seedDatabase() {
       successRate: 89,
     });
 
-    // Insert 20 realistic testimonials with unique names, dates, and ratings
-    const testimonials = Array.from({ length: 20 }, (_, i) => generateRandomTestimonial(i));
-    await db.insert(schema.testimonials).values(testimonials);
+    // 💥 CHANGED: Split testimonial insertion into two parts
+    
+    // 1. Insert the 10 MANUAL testimonials safely
+    // This assumes you have a unique constraint on the 'name' column in your schema.
+    // If it's on a different column (like 'id'), this won't work.
+    // 'name' is the most logical choice for testimonials.
+    try {
+      await db.insert(schema.testimonials)
+        .values(MANUAL_TESTIMONIALS)
+        .onConflictDoNothing({ target: schema.testimonials.name }); // Prevents duplicates
+      console.log("Inserted or skipped 10 manual testimonials.");
+    } catch (e) {
+      console.error("Error inserting manual testimonials. Do you have a unique constraint on 'name'?", e);
+    }
+
+    // 2. Generate and insert 10 NEW RANDOM testimonials
+    // We start the index at 10 to skip the manual ones
+    const randomTestimonials = Array.from({ length: 10 }, (_, i) => generateRandomTestimonial(i + 10));
+    await db.insert(schema.testimonials).values(randomTestimonials);
+    console.log("Inserted 10 new random testimonials.");
+
 
     // Insert expanded watchlist (20 stocks)
     await db.insert(schema.stocks).values(EXPANDED_WATCHLIST);
@@ -1145,7 +1164,7 @@ Develop a comprehensive trading plan for consistent success.
       { term: "Expiration Date", definition: "The last day an option contract can be exercised before it becomes worthless." },
       { term: "Premium", definition: "The price paid by the buyer to purchase an option contract." },
       { term: "In The Money (ITM)", definition: "An option that has intrinsic value. For calls, when stock price > strike price. For puts, when stock price < strike price." },
-      { term: "Out of The Money (OTM)", definition: "An option with no intrinsic value. For calls, when stock price < strike price. For puts, when stock price > strike price." },
+      { term:Errors: "Out of The Money (OTM)", definition: "An option with no intrinsic value. For calls, when stock price < strike price. For puts, when stock price > strike price." },
       { term: "At The Money (ATM)", definition: "An option whose strike price is equal or very close to the current stock price." },
       { term: "Delta", definition: "Measures the rate of change in an option's price relative to a $1 change in the underlying asset." },
       { term: "Gamma", definition: "Measures the rate of change in Delta for a $1 change in the underlying asset." },
@@ -1167,7 +1186,6 @@ Develop a comprehensive trading plan for consistent success.
   }
 }
 
-// 💥 2. ADDED THIS ENTIRE NEW FUNCTION TO THE END OF THE FILE
 /**
  * Deletes duplicate testimonials from the database.
  * A duplicate is defined as a row with the same 'name' AND 'rating'.
