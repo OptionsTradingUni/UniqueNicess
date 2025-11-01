@@ -1,5 +1,5 @@
 import { Pool, neonConfig } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-serverless';
+import { drizzle, sql } from 'drizzle-orm/neon-serverless'; // 💥 1. ADDED 'sql' HERE
 import ws from 'ws';
 import * as schema from "@shared/schema";
 import { generateRandomTestimonial, EXPANDED_WATCHLIST } from "./seed-data";
@@ -25,6 +25,9 @@ export const db = drizzle({ client: pool, schema });
 // Seed the database with realistic initial data
 export async function seedDatabase() {
   try {
+    // 💥 3. ADDED THIS LINE TO DELETE DUPLICATES BEFORE SEEDING
+    await deleteDuplicateTestimonials();
+
     // Check if already seeded
     const existingStats = await db.query.stats.findFirst();
     if (existingStats) {
@@ -1145,7 +1148,7 @@ Develop a comprehensive trading plan for consistent success.
       { term: "At The Money (ATM)", definition: "An option whose strike price is equal or very close to the current stock price." },
       { term: "Delta", definition: "Measures the rate of change in an option's price relative to a $1 change in the underlying asset." },
       { term: "Gamma", definition: "Measures the rate of change in Delta for a $1 change in the underlying asset." },
-      { term: "Theta", definition: "Measures the rate of decline in an option's value due to the passage of time (time decay)." },
+      { term: "Theta", "definition": "Measures the rate of decline in an option's value due to the passage of time (time decay)." },
       { term: "Vega", definition: "Measures sensitivity to volatility. Shows how much an option's price changes for a 1% change in implied volatility." },
       { term: "Implied Volatility", definition: "The market's forecast of a likely movement in the underlying asset's price, reflected in option prices." },
       { term: "Intrinsic Value", definition: "The actual value of an option if exercised immediately. Difference between stock price and strike price for ITM options." },
@@ -1160,5 +1163,82 @@ Develop a comprehensive trading plan for consistent success.
     console.log("Database seeded successfully with 20 unique testimonials and expanded watchlist!");
   } catch (error) {
     console.error("Error seeding database:", error);
+  }
+}
+
+// 💥 2. ADDED THIS ENTIRE NEW FUNCTION TO THE END OF THE FILE
+/**
+ * Deletes duplicate testimonials from the database.
+ * A duplicate is defined as a row with the same 'name' AND 'rating'.
+ * This function keeps the first-created row (by 'created_at') and deletes all others.
+ */
+export async function deleteDuplicateTestimonials() {
+  console.log("Checking for and deleting duplicate testimonials...");
+
+  // This raw SQL query is the most efficient way to delete duplicates
+  const deletionQuery = sql`
+    DELETE FROM ${schema.testimonials}
+    WHERE id IN (
+        SELECT id
+        FROM (
+            SELECT
+                id,
+                -- Groups rows by name/rating, orders them, and gives a number
+                ROW_NUMBER() OVER (PARTITION BY name, rating ORDER BY created_at) as rn 
+            FROM ${schema.testimonials}
+        ) AS numbered_rows
+        -- Selects only the duplicates (keeping the 1st one)
+        WHERE rn > 1
+    );
+  `;
+
+  try {
+    const result = await db.execute(deletionQuery);
+    if (result.rowCount > 0) {
+      console.log(`Successfully deleted ${result.rowCount} duplicate testimonials.`);
+    } else {
+      console.log("No duplicate testimonials found.");
+    }
+    return result.rowCount;
+  } catch (error) {
+    // If 'created_at' doesn't exist, this provides a fallback for the error
+    if (error instanceof Error && error.message.includes("column \"created_at\" does not exist")) {
+        console.warn("Warning: 'created_at' column not found. Trying 'id' as fallback for ordering.");
+        return deleteDuplicateTestimonialsFallback();
+    }
+    console.error("Error deleting duplicate testimonials:", error);
+    return 0;
+  }
+}
+
+/**
+ * Fallback delete function in case the 'created_at' column doesn't exist.
+ * It uses 'id' to determine which duplicate to keep.
+ */
+async function deleteDuplicateTestimonialsFallback() {
+    const deletionQuery = sql`
+    DELETE FROM ${schema.testimonials}
+    WHERE id IN (
+        SELECT id
+        FROM (
+            SELECT
+                id,
+                ROW_NUMBER() OVER (PARTITION BY name, rating ORDER BY id) as rn 
+            FROM ${schema.testimonials}
+        ) AS numbered_rows
+        WHERE rn > 1
+    );
+  `;
+   try {
+    const result = await db.execute(deletionQuery);
+    if (result.rowCount > 0) {
+      console.log(`Successfully deleted ${result.rowCount} duplicate testimonials (using 'id' fallback).`);
+    } else {
+      console.log("No duplicate testimonials found (using 'id' fallback).");
+    }
+    return result.rowCount;
+  } catch (error) {
+     console.error("Error deleting duplicate testimonials with fallback:", error);
+     return 0;
   }
 }
