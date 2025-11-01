@@ -1164,7 +1164,7 @@ Develop a comprehensive trading plan for consistent success.
       { term: "Expiration Date", definition: "The last day an option contract can be exercised before it becomes worthless." },
       { term: "Premium", definition: "The price paid by the buyer to purchase an option contract." },
       { term: "In The Money (ITM)", definition: "An option that has intrinsic value. For calls, when stock price > strike price. For puts, when stock price < strike price." },
-      { term:Errors: "Out of The Money (OTM)", definition: "An option with no intrinsic value. For calls, when stock price < strike price. For puts, when stock price > strike price." },
+      { term: "Out of The Money (OTM)", definition: "An option with no intrinsic value. For calls, when stock price < strike price. For puts, when stock price > strike price." },
       { term: "At The Money (ATM)", definition: "An option whose strike price is equal or very close to the current stock price." },
       { term: "Delta", definition: "Measures the rate of change in an option's price relative to a $1 change in the underlying asset." },
       { term: "Gamma", definition: "Measures the rate of change in Delta for a $1 change in the underlying asset." },
