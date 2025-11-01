@@ -1,5 +1,6 @@
 import { Pool, neonConfig } from '@neondatabase/serverless';
-import { drizzle, sql } from 'drizzle-orm/neon-serverless'; // 💥 1. ADDED 'sql' HERE
+import { drizzle } from 'drizzle-orm/neon-serverless';
+import { sql } from 'drizzle-orm';
 import ws from 'ws';
 import * as schema from "@shared/schema";
 import { generateRandomTestimonial, EXPANDED_WATCHLIST } from "./seed-data";
